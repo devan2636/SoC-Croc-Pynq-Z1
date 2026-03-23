@@ -6,6 +6,7 @@
 rsync -av \
     --exclude='modify.sh' \
     --exclude='README.md' \
+    --exclude='bitstreams/' \
     --exclude='.git/' \
     --include='sw/' \
     --include='xilinx/' \
