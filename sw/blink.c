@@ -1,7 +1,13 @@
 #include "timer.h"
 #include "gpio.h"
+#include "uart.h"
+#include "print.h"
+#include "util.h"
 
 int main() {
+    uart_init(); // setup the uart peripheral
+    printf("Blinking LED0 Test!!\n");
+    uart_write_flush(); // wait until uart has finished sending
 
     // Set GPIO[0] as output
     gpio_set_direction(0xFFFF, 0x0001);
