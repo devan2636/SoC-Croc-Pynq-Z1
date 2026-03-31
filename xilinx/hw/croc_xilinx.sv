@@ -18,6 +18,14 @@
   // `define USE_VIO
 `endif  // `ifdef TARGET_PYNQZ1
 
+`ifdef TARGET_ZCU104
+  `define USE_RESET
+  `define USE_SWITCHES
+  `define USE_LEDS
+  `define USE_JTAG_TCK_BUF
+  `define USE_RST_BUF
+`endif // `ifdef TARGET_ZCU104
+
 `ifdef TARGET_GENESYS2
   `define USE_RESETN
   `define USE_JTAG_TRSTN
@@ -121,10 +129,19 @@ module croc_xilinx import croc_pkg::*; #(
   // Select SoC reset
 `ifdef USE_RESET
   logic sys_resetn;
-  assign sys_resetn = ~sys_reset;
+  assign sys_resetn = ~sys_reset_buf;
 `elsif USE_RESETN
   logic sys_reset;
   assign sys_reset  = ~sys_resetn;
+`endif
+
+`ifdef USE_RST_BUF
+  logic sys_reset_buf;
+  BUFGCE bufgce_sys_reset (
+    .I(sys_reset),
+    .CE(1'b1),
+    .O(sys_reset_buf)
+  );
 `endif
 
   // Tie off inputs of no switches
@@ -214,6 +231,14 @@ module croc_xilinx import croc_pkg::*; #(
   logic jtag_trst_ni;
   assign jtag_trst_ni = 1'b1;
 `endif
+`ifdef USE_JTAG_TCK_BUF
+  wire jtag_tck_buf;
+  BUFGCE bufgce_jtag_tck (
+    .I(jtag_tck_i),
+    .CE(1'b1),
+    .O(jtag_tck_buf)
+  );
+`endif // `ifdef USE_JTAG_TCK_BUF
 
 
   /////////////////////////
@@ -276,7 +301,11 @@ module croc_xilinx import croc_pkg::*; #(
     .fetch_en_i      ( soc_fetch_en   ),
     .status_o        ( status_o       ),
 
-    .jtag_tck_i      ( jtag_tck_i   ),
+    `ifdef USE_JTAG_TCK_BUF
+      .jtag_tck_i      ( jtag_tck_buf   ),
+    `else
+      .jtag_tck_i      ( jtag_tck_i   ),
+    `endif
     .jtag_tdi_i      ( jtag_tdi_i   ),
     .jtag_tdo_o      ( jtag_tdo_o   ),
     .jtag_tms_i      ( jtag_tms_i   ),

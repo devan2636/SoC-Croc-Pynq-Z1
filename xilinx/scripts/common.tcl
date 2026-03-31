@@ -20,6 +20,11 @@ set bpart(pynqz1) "www.digilentinc.com:pynq-z1:part0:1.0"
 set fpart(pynqz1) "xc7z020clg400-1"
 set hwdev(pynqz1) "xc7z020_1"
 
+# ZCU104 board params
+set bpart(zcu104) "xilinx.com:zcu104:part0:1.1"
+set fpart(zcu104) "xczu7ev-ffvc1156-2-e"
+set hwdev(zcu104) "xczu7ev_1"
+
 
 # Initialize an implementation project
 proc init_impl {xilinx_root argc argv} {

@@ -6,7 +6,7 @@
 
 int main() {
     uart_init(); // setup the uart peripheral
-    printf("Blinking LED0 Test!!\n");
+    printf("Test LED Blink 123456789\n");
     uart_write_flush(); // wait until uart has finished sending
 
     // Set GPIO[0] as output
