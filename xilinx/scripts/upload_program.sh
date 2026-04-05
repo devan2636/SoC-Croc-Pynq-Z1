@@ -12,6 +12,7 @@ fi
 
 # Full path to GDB executable
 GDB_EXEC="$GDB_BIN_PATH/riscv32-unknown-elf-gdb"
+OCD_GDB_PORT="${OCD_GDB_PORT:-3335}"
 
 # Validate GDB exists
 if [ ! -x "$GDB_EXEC" ]; then
@@ -21,8 +22,9 @@ fi
 
 # Run GDB
 "$GDB_EXEC" \
-    --ex "target remote localhost:3333" \
+    --ex "target remote localhost:$OCD_GDB_PORT" \
+    --ex "monitor halt" \
     --ex "load" \
-    --ex "monitor reset halt" \
+    --ex "set $pc = _start" \
     --ex "continue" \
     "$TARGET"

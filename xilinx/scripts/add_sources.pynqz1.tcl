@@ -1,6 +1,12 @@
 # This script was generated automatically by bender.
-# set ROOT "set_your_root_path_here"
-set ROOT "/home/fauzan/pau/workspace/croc-pulp/croc"
+# Set ROOT relative to this script so the project is portable across machines.
+set ROOT_LOCAL [file normalize [file join [file dirname [file normalize [info script]]] .. ..]]
+set ROOT_ALT   [file normalize [file join $ROOT_LOCAL .. croc]]
+
+# croc_pynq-z1 is missing several RTL files locally, so use the sibling
+# `croc` tree for the actual RTL sources required by Vivado.
+set ROOT $ROOT_ALT
+puts "INFO: Using RTL ROOT: $ROOT"
 add_files -norecurse -fileset [current_fileset] [list \
     $ROOT/rtl/tech_cells_generic/fpga/pad_functional_xilinx.sv \
     $ROOT/rtl/tech_cells_generic/fpga/tc_clk_xilinx.sv \

@@ -1,0 +1,7 @@
+set_property SRC_FILE_INFO {cfile:/home/devan/SoC/croc_pynq-z1/xilinx/build/pynqz1.croc/croc.srcs/constrs_1/imports/src/pynqz1.xdc rfile:../croc.srcs/constrs_1/imports/src/pynqz1.xdc id:1} [current_design]
+set_property src_info {type:XDC file:1 line:14 export:INPUT save:INPUT read:READ} [current_design]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets sys_resetn_IBUF]
+set_property src_info {type:XDC file:1 line:26 export:INPUT save:INPUT read:READ} [current_design]
+set_output_delay -min -clock [get_clocks -of_objects [get_pins i_clkwiz/clk_20]] [expr { 50.0 * 0.10 }] [get_ports fan_pwm]
+set_property src_info {type:XDC file:1 line:27 export:INPUT save:INPUT read:READ} [current_design]
+set_output_delay -max -clock [get_clocks -of_objects [get_pins i_clkwiz/clk_20]] [expr { 50.0 * 0.35 }] [get_ports fan_pwm]
