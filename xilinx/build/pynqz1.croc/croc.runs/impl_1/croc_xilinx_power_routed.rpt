@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
-| Date             : Sat Apr  4 20:59:36 2026
+| Date             : Thu Apr  9 20:54:38 2026
 | Host             : devan-astroboy running 64-bit Ubuntu 24.04.4 LTS
 | Command          : report_power -file croc_xilinx_power_routed.rpt -pb croc_xilinx_power_summary_routed.pb -rpx croc_xilinx_power_routed.rpx
 | Design           : croc_xilinx
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.229        |
+| Total On-Chip Power (W)  | 0.241        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.121        |
+| Dynamic (W)              | 0.133        |
 | Device Static (W)        | 0.108        |
 | Effective TJA (C/W)      | 11.5         |
-| Max Ambient (C)          | 82.4         |
-| Junction Temperature (C) | 27.6         |
+| Max Ambient (C)          | 82.2         |
+| Junction Temperature (C) | 27.8         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,21 +52,21 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.005 |        5 |       --- |             --- |
-| Slice Logic    |     0.002 |    12044 |       --- |             --- |
-|   LUT as Logic |     0.002 |     6423 |     53200 |           12.07 |
-|   CARRY4       |    <0.001 |      260 |     13300 |            1.95 |
-|   Register     |    <0.001 |     4064 |    106400 |            3.82 |
+| Clocks         |     0.006 |        5 |       --- |             --- |
+| Slice Logic    |     0.004 |    13840 |       --- |             --- |
+|   LUT as Logic |     0.004 |     7868 |     53200 |           14.79 |
+|   CARRY4       |    <0.001 |      556 |     13300 |            4.18 |
+|   Register     |    <0.001 |     4177 |    106400 |            3.93 |
 |   BUFG         |    <0.001 |        6 |        32 |           18.75 |
-|   F7/F8 Muxes  |    <0.001 |      374 |     53200 |            0.70 |
-|   Others       |     0.000 |      174 |       --- |             --- |
-| Signals        |     0.002 |     9252 |       --- |             --- |
+|   F7/F8 Muxes  |    <0.001 |      336 |     53200 |            0.63 |
+|   Others       |     0.000 |      177 |       --- |             --- |
+| Signals        |     0.006 |    11067 |       --- |             --- |
 | Block RAM      |    <0.001 |        2 |       140 |            1.43 |
-| MMCM           |     0.112 |        1 |         4 |           25.00 |
+| MMCM           |     0.116 |        1 |         4 |           25.00 |
 | DSPs           |    <0.001 |        1 |       220 |            0.45 |
-| I/O            |    <0.001 |       17 |       125 |           13.60 |
+| I/O            |    <0.001 |       16 |       125 |           12.80 |
 | Static Power   |     0.108 |          |           |                 |
-| Total          |     0.229 |          |           |                 |
+| Total          |     0.241 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,8 +76,8 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.017 |       0.009 |      0.008 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.072 |       0.062 |      0.011 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.025 |       0.017 |      0.008 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.075 |       0.064 |      0.011 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -139,7 +139,7 @@ Table of Contents
 +-----------------+-------------------------------+-----------------+
 | Clock           | Domain                        | Constraint (ns) |
 +-----------------+-------------------------------+-----------------+
-| clk_20_clkwiz   | i_clkwiz/inst/clk_20_clkwiz   |            50.0 |
+| clk_20_clkwiz   | i_clkwiz/inst/clk_20_clkwiz   |            40.0 |
 | clkfbout_clkwiz | i_clkwiz/inst/clkfbout_clkwiz |            10.0 |
 | sys_clk         | sys_clk_i                     |            10.0 |
 +-----------------+-------------------------------+-----------------+
@@ -151,15 +151,18 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-------------------+-----------+
-| Name              | Power (W) |
-+-------------------+-----------+
-| croc_xilinx       |     0.121 |
-|   i_clkwiz        |     0.112 |
-|     inst          |     0.112 |
-|   i_croc_soc      |     0.008 |
-|     i_croc        |     0.008 |
-|       i_core_wrap |     0.005 |
-+-------------------+-----------+
++--------------------+-----------+
+| Name               | Power (W) |
++--------------------+-----------+
+| croc_xilinx        |     0.133 |
+|   i_clkwiz         |     0.117 |
+|     inst           |     0.117 |
+|   i_croc_soc       |     0.016 |
+|     i_croc         |     0.011 |
+|       i_core_wrap  |     0.006 |
+|       i_dm_top     |     0.001 |
+|     i_user         |     0.005 |
+|       i_simple_alu |     0.004 |
++--------------------+-----------+
 
 

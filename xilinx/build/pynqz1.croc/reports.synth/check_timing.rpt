@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
-| Date         : Sat Apr  4 20:56:15 2026
+| Date         : Thu Apr  9 19:53:43 2026
 | Host         : devan-astroboy running 64-bit Ubuntu 24.04.4 LTS
 | Command      : check_timing -file /home/devan/SoC/croc_pynq-z1/xilinx/build/pynqz1.croc/reports.synth/check_timing.rpt -verbose
 | Design       : croc_xilinx
@@ -19,7 +19,7 @@ Table of Contents
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
 4. checking unconstrained_internal_endpoints (494)
-5. checking no_input_delay (4)
+5. checking no_input_delay (3)
 6. checking no_output_delay (2)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
@@ -863,13 +863,12 @@ i_croc_soc/i_croc/i_dmi_jtag/i_dmi_jtag_tap/td_o_reg/D
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (4)
+5. checking no_input_delay (3)
 ------------------------------
- There are 4 input ports with no input delay specified. (HIGH)
+ There are 3 input ports with no input delay specified. (HIGH)
 
 jtag_tdi_i
 jtag_tms_i
-sys_reset
 uart_rx_i
 
  There are 0 input ports with no input delay but user has a false path constraint.

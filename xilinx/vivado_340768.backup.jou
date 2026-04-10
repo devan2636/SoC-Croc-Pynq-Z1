@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Fri Apr 10 06:03:01 2026
+# Process ID         : 340768
+# Current directory  : /home/devan/SoC/croc_pynq-z1/xilinx
+# Command line       : vivado -mode batch -source scripts/program_pynqz1.tcl -tclargs out/croc.pynqz1.bit localhost:3121 xc7z020_1
+# Log file           : /home/devan/SoC/croc_pynq-z1/xilinx/vivado.log
+# Journal file       : /home/devan/SoC/croc_pynq-z1/xilinx/vivado.jou
+# Running On         : devan-astroboy
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : AMD Ryzen 3 3200U with Radeon Vega Mobile Gfx
+# CPU Frequency      : 1197.721 MHz
+# CPU Physical cores : 2
+# CPU Logical cores  : 4
+# Host memory        : 14590 MB
+# Swap memory        : 4294 MB
+# Total Virtual      : 18885 MB
+# Available Virtual  : 11621 MB
+#-----------------------------------------------------------
+source scripts/program_pynqz1.tcl

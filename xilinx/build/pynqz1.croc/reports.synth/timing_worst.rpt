@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
-| Date         : Sat Apr  4 20:56:19 2026
+| Date         : Thu Apr  9 20:05:38 2026
 | Host         : devan-astroboy running 64-bit Ubuntu 24.04.4 LTS
 | Command      : report_timing -file /home/devan/SoC/croc_pynq-z1/xilinx/build/pynqz1.croc/reports.synth/timing_worst.rpt -nworst 1 -delay_type max -sort_by group
 | Design       : croc_xilinx
@@ -12,23 +12,23 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanc
 
 Timing Report
 
-Slack (MET) :             22.521ns  (required time - arrival time)
-  Source:                 i_croc_soc/i_croc/i_core_wrap/i_ibex/load_store_unit_i/FSM_onehot_ls_fsm_cs_reg[2]/C
-                            (rising edge-triggered cell FDCE clocked by clk_20_clkwiz  {rise@0.000ns fall@25.000ns period=50.000ns})
-  Destination:            i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[28]/D
-                            (rising edge-triggered cell FDCE clocked by clk_20_clkwiz  {rise@0.000ns fall@25.000ns period=50.000ns})
+Slack (VIOLATED) :        -62.258ns  (required time - arrival time)
+  Source:                 i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/instr_rdata_alu_id_o_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by clk_20_clkwiz  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            i_croc_soc/i_user/i_simple_alu/result_q_reg[31]/D
+                            (rising edge-triggered cell FDCE clocked by clk_20_clkwiz  {rise@0.000ns fall@20.000ns period=40.000ns})
   Path Group:             clk_20_clkwiz
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            50.000ns  (clk_20_clkwiz rise@50.000ns - clk_20_clkwiz rise@0.000ns)
-  Data Path Delay:        27.278ns  (logic 9.102ns (33.368%)  route 18.176ns (66.632%))
-  Logic Levels:           50  (CARRY4=20 LUT2=2 LUT3=2 LUT4=7 LUT5=3 LUT6=16)
+  Requirement:            40.000ns  (clk_20_clkwiz rise@40.000ns - clk_20_clkwiz rise@0.000ns)
+  Data Path Delay:        102.063ns  (logic 67.153ns (65.796%)  route 34.910ns (34.204%))
+  Logic Levels:           335  (CARRY4=310 LUT2=1 LUT3=2 LUT4=2 LUT5=4 LUT6=16)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    -2.269ns = ( 47.731 - 50.000 ) 
+    Destination Clock Delay (DCD):    -2.269ns = ( 37.731 - 40.000 ) 
     Source Clock Delay      (SCD):    -1.593ns
     Clock Pessimism Removal (CPR):    0.530ns
-  Clock Uncertainty:      0.100ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+  Clock Uncertainty:      0.094ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
-    Discrete Jitter          (DJ):    0.187ns
+    Discrete Jitter          (DJ):    0.175ns
     Phase Error              (PE):    0.000ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -43,172 +43,1032 @@ Slack (MET) :             22.521ns  (required time - arrival time)
                                                      -5.113    -3.078 r  i_clkwiz/inst/mmcm_adv_inst/CLKOUT0
                          net (fo=1, unplaced)         0.800    -2.278    i_clkwiz/inst/clk_20_clkwiz
                          BUFG (Prop_bufg_I_O)         0.101    -2.177 r  i_clkwiz/inst/clkout1_buf/O
-                         net (fo=3749, unplaced)      0.584    -1.593    i_croc_soc/i_croc/i_core_wrap/i_ibex/load_store_unit_i/clk_20
-                         FDCE                                         r  i_croc_soc/i_croc/i_core_wrap/i_ibex/load_store_unit_i/FSM_onehot_ls_fsm_cs_reg[2]/C
+                         net (fo=3795, unplaced)      0.584    -1.593    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/clk_20
+                         FDCE                                         r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/instr_rdata_alu_id_o_reg[0]/C
   -------------------------------------------------------------------    -------------------
-                         FDCE (Prop_fdce_C_Q)         0.478    -1.115 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/load_store_unit_i/FSM_onehot_ls_fsm_cs_reg[2]/Q
-                         net (fo=14, unplaced)        0.792    -0.323    i_croc_soc/i_croc/i_core_wrap/i_ibex/load_store_unit_i/Q[1]
-                         LUT4 (Prop_lut4_I1_O)        0.295    -0.028 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/load_store_unit_i/adder_result_ext_o_carry_i_11/O
-                         net (fo=38, unplaced)        0.524     0.496    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/lsu_addr_incr_req
-                         LUT6 (Prop_lut6_I1_O)        0.124     0.620 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_94/O
-                         net (fo=1, unplaced)         0.902     1.522    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_94_n_459
-                         LUT6 (Prop_lut6_I0_O)        0.124     1.646 f  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_52/O
-                         net (fo=7, unplaced)         0.484     2.130    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_52_n_459
-                         LUT2 (Prop_lut2_I0_O)        0.124     2.254 f  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry__2_i_34/O
-                         net (fo=23, unplaced)        0.965     3.219    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry__2_i_34_n_459
-                         LUT6 (Prop_lut6_I1_O)        0.124     3.343 f  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_49/O
-                         net (fo=1, unplaced)         0.449     3.792    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_49_n_459
-                         LUT6 (Prop_lut6_I4_O)        0.124     3.916 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_20/O
-                         net (fo=5, unplaced)         0.477     4.393    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/alu_operand_b_ex[2]
-                         LUT3 (Prop_lut3_I1_O)        0.124     4.517 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_7/O
-                         net (fo=1, unplaced)         0.000     4.517    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/S[2]
-                         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.380     4.897 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry/CO[3]
-                         net (fo=1, unplaced)         0.009     4.906    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry_n_459
-                         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     5.023 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__0/CO[3]
-                         net (fo=1, unplaced)         0.000     5.023    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__0_n_459
-                         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     5.140 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__1/CO[3]
-                         net (fo=1, unplaced)         0.000     5.140    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__1_n_459
-                         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     5.257 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__2/CO[3]
-                         net (fo=1, unplaced)         0.000     5.257    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__2_n_459
-                         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     5.374 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__3/CO[3]
-                         net (fo=1, unplaced)         0.000     5.374    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__3_n_459
-                         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     5.491 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__4/CO[3]
-                         net (fo=1, unplaced)         0.000     5.491    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__4_n_459
-                         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     5.608 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__5/CO[3]
-                         net (fo=1, unplaced)         0.000     5.608    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__5_n_459
-                         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.331     5.939 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__6/O[3]
-                         net (fo=23, unplaced)        0.681     6.620    i_croc_soc/i_croc/i_core_wrap/i_ibex/id_stage_i/controller_i/core_data_obi_req[a][addr][26]
-                         LUT6 (Prop_lut6_I0_O)        0.307     6.927 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/id_stage_i/controller_i/instr_addr_q[31]_i_8/O
-                         net (fo=2, unplaced)         0.460     7.387    i_croc_soc/i_croc/i_core_wrap/i_ibex/id_stage_i/controller_i/instr_addr_q[31]_i_8_n_459
-                         LUT6 (Prop_lut6_I5_O)        0.124     7.511 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/id_stage_i/controller_i/instr_addr_q[31]_i_3/O
-                         net (fo=4, unplaced)         0.473     7.984    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/addr_i[29]
-                         LUT5 (Prop_lut5_I2_O)        0.124     8.108 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/stored_addr_q[31]_i_2/O
-                         net (fo=26, unplaced)        0.485     8.593    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/D[3]
-                         LUT2 (Prop_lut2_I0_O)        0.153     8.746 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/select_q[1]_i_8__1/O
-                         net (fo=1, unplaced)         0.000     8.746    i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_addr_decode/i_addr_decode_dync/select_q[0]_i_2_9[1]
-                         CARRY4 (Prop_carry4_DI[2]_CO[2])
-                                                      0.419     9.165 f  i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_addr_decode/i_addr_decode_dync/select_q_reg[1]_i_3/CO[2]
-                         net (fo=3, unplaced)         0.686     9.851    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/gen_arbiter.gen_int_rr.gen_lock.req_q_reg[3]_1[0]
-                         LUT4 (Prop_lut4_I0_O)        0.310    10.161 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/select_q[1]_i_2/O
-                         net (fo=7, unplaced)         0.937    11.098    i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_demux/gen_arbiter.gen_int_rr.gen_lock.req_q[3]_i_4
-                         LUT6 (Prop_lut6_I1_O)        0.124    11.222 r  i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_demux/gen_arbiter.gen_int_rr.gen_lock.req_q[3]_i_5/O
-                         net (fo=5, unplaced)         0.447    11.669    i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_demux/i_counter/gen_arbiter.gen_int_rr.gen_lock.req_q_reg[3]_0
-                         LUT6 (Prop_lut6_I4_O)        0.124    11.793 f  i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_demux/i_counter/gen_arbiter.gen_int_rr.gen_lock.req_q[3]_i_2__3/O
-                         net (fo=33, unplaced)        0.491    12.284    i_croc_soc/i_croc/i_main_xbar/gen_mux[1].i_mux/i_rr_arb/gen_arbiter.gen_int_rr.gen_lock.req_q_reg[3]_1
-                         LUT6 (Prop_lut6_I4_O)        0.124    12.408 r  i_croc_soc/i_croc/i_main_xbar/gen_mux[1].i_mux/i_rr_arb/addr_q[4]_i_23/O
-                         net (fo=69, unplaced)        0.539    12.947    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/gen_arbiter.index_nodes[2]_22
-                         LUT5 (Prop_lut5_I2_O)        0.124    13.071 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/addr_q[0]_i_2/O
-                         net (fo=15, unplaced)        0.955    14.026    i_croc_soc/i_croc/i_dm_top/i_dm_top/i_dm_csrs/gen_arbiter.data_nodes[2][addr][1]
-                         LUT6 (Prop_lut6_I0_O)        0.124    14.150 r  i_croc_soc/i_croc/i_dm_top/i_dm_top/i_dm_csrs/i__carry_i_3/O
-                         net (fo=1, unplaced)         0.639    14.789    i_croc_soc/i_croc/i_addr_decode_periphs/i_addr_decode_dync/idx_o2_inferred__3/i__carry__0_0[1]
-                         CARRY4 (Prop_carry4_DI[1]_CO[3])
-                                                      0.520    15.309 r  i_croc_soc/i_croc/i_addr_decode_periphs/i_addr_decode_dync/idx_o2_inferred__3/i__carry/CO[3]
-                         net (fo=1, unplaced)         0.009    15.318    i_croc_soc/i_croc/i_addr_decode_periphs/i_addr_decode_dync/idx_o2_inferred__3/i__carry_n_459
-                         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    15.435 r  i_croc_soc/i_croc/i_addr_decode_periphs/i_addr_decode_dync/idx_o2_inferred__3/i__carry__0/CO[3]
-                         net (fo=1, unplaced)         0.000    15.435    i_croc_soc/i_croc/i_addr_decode_periphs/i_addr_decode_dync/idx_o2_inferred__3/i__carry__0_n_459
-                         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    15.552 r  i_croc_soc/i_croc/i_addr_decode_periphs/i_addr_decode_dync/idx_o2_inferred__3/i__carry__1/CO[3]
-                         net (fo=1, unplaced)         0.000    15.552    i_croc_soc/i_croc/i_addr_decode_periphs/i_addr_decode_dync/idx_o2_inferred__3/i__carry__1_n_459
-                         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    15.669 f  i_croc_soc/i_croc/i_addr_decode_periphs/i_addr_decode_dync/idx_o2_inferred__3/i__carry__2/CO[3]
-                         net (fo=3, unplaced)         0.936    16.605    i_croc_soc/i_croc/i_dm_top/i_dm_top/i_dm_csrs/status_cnt_q_reg[0]_18[0]
-                         LUT4 (Prop_lut4_I3_O)        0.124    16.729 f  i_croc_soc/i_croc/i_dm_top/i_dm_top/i_dm_csrs/addr_q[4]_i_14/O
-                         net (fo=2, unplaced)         0.460    17.189    i_croc_soc/i_croc/i_dm_top/i_dm_top/i_dm_csrs/addr_q[4]_i_14_n_459
-                         LUT6 (Prop_lut6_I5_O)        0.124    17.313 r  i_croc_soc/i_croc/i_dm_top/i_dm_top/i_dm_csrs/addr_q[4]_i_5/O
-                         net (fo=25, unplaced)        0.514    17.827    i_croc_soc/i_croc/i_obi_demux/addr_q[4]_i_22
-                         LUT6 (Prop_lut6_I5_O)        0.124    17.951 r  i_croc_soc/i_croc/i_obi_demux/addr_q[4]_i_66/O
-                         net (fo=1, unplaced)         0.449    18.400    i_croc_soc/i_croc/i_obi_demux/i_counter/s_timer_cmp_hi_reg[31]_i_4
-                         LUT4 (Prop_lut4_I1_O)        0.124    18.524 r  i_croc_soc/i_croc/i_obi_demux/i_counter/addr_q[4]_i_22/O
-                         net (fo=8, unplaced)         0.487    19.011    i_croc_soc/i_croc/i_main_xbar/gen_mux[1].i_mux/gen_no_id_assign.i_fifo/status_cnt_q_reg[0]_1
-                         LUT4 (Prop_lut4_I0_O)        0.124    19.135 r  i_croc_soc/i_croc/i_main_xbar/gen_mux[1].i_mux/gen_no_id_assign.i_fifo/addr_q[4]_i_6/O
-                         net (fo=14, unplaced)        0.500    19.635    i_croc_soc/i_croc/i_dm_top/i_dm_top/i_dm_csrs/status_cnt_q_reg[0]_14
-                         LUT5 (Prop_lut5_I4_O)        0.124    19.759 r  i_croc_soc/i_croc/i_dm_top/i_dm_top/i_dm_csrs/reg_q[intrpt_en][3]_i_3/O
-                         net (fo=6, unplaced)         0.481    20.240    i_croc_soc/i_croc/i_gpio/i_reg_file/sbcs_q[sberror][13]_i_4
-                         LUT6 (Prop_lut6_I3_O)        0.124    20.364 f  i_croc_soc/i_croc/i_gpio/i_reg_file/sbcs_q[sberror][13]_i_8/O
-                         net (fo=1, unplaced)         0.449    20.813    i_croc_soc/i_croc/i_main_xbar/gen_mux[1].i_mux/gen_no_id_assign.i_fifo/all_sbr_obi_rsp[1][r][err]
-                         LUT4 (Prop_lut4_I0_O)        0.124    20.937 f  i_croc_soc/i_croc/i_main_xbar/gen_mux[1].i_mux/gen_no_id_assign.i_fifo/sbcs_q[sberror][13]_i_4/O
-                         net (fo=2, unplaced)         0.460    21.397    i_croc_soc/i_croc/i_main_xbar/gen_mux[0].i_mux/gen_no_id_assign.i_fifo/g_fifo_regs[2].err_q_reg[2]_0
-                         LUT6 (Prop_lut6_I3_O)        0.124    21.521 f  i_croc_soc/i_croc/i_main_xbar/gen_mux[0].i_mux/gen_no_id_assign.i_fifo/g_fifo_regs[2].err_q[2]_i_3/O
-                         net (fo=1, unplaced)         0.449    21.970    i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/gen_no_id_assign.i_fifo/g_fifo_regs[2].err_q_reg[2]
-                         LUT6 (Prop_lut6_I5_O)        0.124    22.094 f  i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/gen_no_id_assign.i_fifo/g_fifo_regs[2].err_q[2]_i_1/O
-                         net (fo=8, unplaced)         0.487    22.581    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/core_instr_obi_rsp[r][err]
-                         LUT6 (Prop_lut6_I4_O)        0.124    22.705 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_rdata_id_o[31]_i_3/O
-                         net (fo=4, unplaced)         0.473    23.178    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/unaligned_is_compressed__1
-                         LUT4 (Prop_lut4_I3_O)        0.124    23.302 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q[4]_i_9/O
-                         net (fo=1, unplaced)         0.000    23.302    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q[4]_i_9_n_459
+                         FDCE (Prop_fdce_C_Q)         0.478    -1.115 f  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/instr_rdata_alu_id_o_reg[0]/Q
+                         net (fo=8, unplaced)         0.779    -0.336    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/instr_rdata_alu_id[0]
+                         LUT4 (Prop_lut4_I1_O)        0.295    -0.041 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_71/O
+                         net (fo=5, unplaced)         0.477     0.436    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_71_n_459
+                         LUT6 (Prop_lut6_I1_O)        0.124     0.560 f  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_32/O
+                         net (fo=6, unplaced)         0.934     1.494    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_32_n_459
+                         LUT5 (Prop_lut5_I0_O)        0.124     1.618 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_79/O
+                         net (fo=1, unplaced)         0.902     2.520    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_79_n_459
+                         LUT6 (Prop_lut6_I0_O)        0.124     2.644 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_36/O
+                         net (fo=1, unplaced)         0.449     3.093    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_36_n_459
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.217 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_12/O
+                         net (fo=12, unplaced)        0.950     4.167    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/alu_operator_ex[2]
+                         LUT6 (Prop_lut6_I2_O)        0.124     4.291 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_25/O
+                         net (fo=32, unplaced)        0.520     4.811    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_25_n_459
+                         LUT3 (Prop_lut3_I2_O)        0.124     4.935 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/adder_result_ext_o_carry_i_8/O
+                         net (fo=1, unplaced)         0.000     4.935    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/S[1]
                          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533    23.835 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[4]_i_3/CO[3]
-                         net (fo=1, unplaced)         0.009    23.844    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[4]_i_3_n_459
+                                                      0.533     5.468 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry/CO[3]
+                         net (fo=1, unplaced)         0.009     5.477    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry_n_459
                          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    23.961 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[8]_i_3/CO[3]
-                         net (fo=1, unplaced)         0.000    23.961    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[8]_i_3_n_459
+                                                      0.117     5.594 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__0/CO[3]
+                         net (fo=1, unplaced)         0.000     5.594    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__0_n_459
                          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    24.078 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[12]_i_3/CO[3]
-                         net (fo=1, unplaced)         0.000    24.078    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[12]_i_3_n_459
+                                                      0.117     5.711 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__1/CO[3]
+                         net (fo=1, unplaced)         0.000     5.711    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__1_n_459
                          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    24.195 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[16]_i_3/CO[3]
-                         net (fo=1, unplaced)         0.000    24.195    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[16]_i_3_n_459
+                                                      0.117     5.828 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__2/CO[3]
+                         net (fo=1, unplaced)         0.000     5.828    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__2_n_459
                          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    24.312 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[20]_i_3/CO[3]
-                         net (fo=1, unplaced)         0.000    24.312    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[20]_i_3_n_459
+                                                      0.117     5.945 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__3/CO[3]
+                         net (fo=1, unplaced)         0.000     5.945    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__3_n_459
                          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    24.429 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[24]_i_3/CO[3]
-                         net (fo=1, unplaced)         0.000    24.429    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[24]_i_3_n_459
+                                                      0.117     6.062 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__4/CO[3]
+                         net (fo=1, unplaced)         0.000     6.062    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__4_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.179 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__5/CO[3]
+                         net (fo=1, unplaced)         0.000     6.179    i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__5_n_459
                          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.331    24.760 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[28]_i_3/O[3]
-                         net (fo=1, unplaced)         0.618    25.378    i_croc_soc/i_croc/i_core_wrap/i_ibex/id_stage_i/controller_i/instr_addr_next[28]
-                         LUT3 (Prop_lut3_I2_O)        0.307    25.685 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/id_stage_i/controller_i/instr_addr_q[28]_i_1/O
-                         net (fo=1, unplaced)         0.000    25.685    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[31]_1[27]
-                         FDCE                                         r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[28]/D
+                                                      0.331     6.510 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/ex_block_i/alu_i/adder_result_ext_o_carry__6/O[3]
+                         net (fo=37, unplaced)        0.693     7.203    i_croc_soc/i_croc/i_core_wrap/i_ibex/id_stage_i/controller_i/gen_arbiter.gen_int_rr.gen_lock.req_q[3]_i_7_1[3]
+                         LUT6 (Prop_lut6_I0_O)        0.307     7.510 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/id_stage_i/controller_i/instr_addr_q[31]_i_14/O
+                         net (fo=2, unplaced)         0.460     7.970    i_croc_soc/i_croc/i_core_wrap/i_ibex/id_stage_i/controller_i/instr_addr_q[31]_i_14_n_459
+                         LUT6 (Prop_lut6_I5_O)        0.124     8.094 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/id_stage_i/controller_i/instr_addr_q[31]_i_6/O
+                         net (fo=5, unplaced)         0.477     8.571    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/addr_i[11]
+                         LUT5 (Prop_lut5_I2_O)        0.124     8.695 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/stored_addr_q[31]_i_2/O
+                         net (fo=28, unplaced)        0.517     9.212    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/core_instr_obi_req[a][addr][5]
+                         LUT6 (Prop_lut6_I5_O)        0.124     9.336 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/select_q[1]_i_8__2/O
+                         net (fo=1, unplaced)         0.474     9.810    i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_addr_decode/i_addr_decode_dync/select_q[1]_i_2_5[1]
+                         CARRY4 (Prop_carry4_DI[2]_CO[2])
+                                                      0.391    10.201 r  i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_addr_decode/i_addr_decode_dync/select_q_reg[1]_i_3/CO[2]
+                         net (fo=2, unplaced)         0.978    11.179    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/select_q_reg[0]_3[0]
+                         LUT6 (Prop_lut6_I0_O)        0.310    11.489 f  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/select_q[0]_i_2/O
+                         net (fo=11, unplaced)        0.495    11.984    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/select_q_reg[1]_i_5
+                         LUT4 (Prop_lut4_I3_O)        0.124    12.108 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/gen_arbiter.gen_int_rr.gen_lock.req_q[3]_i_4/O
+                         net (fo=1, unplaced)         0.419    12.527    i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_demux/i_counter/gen_arbiter.gen_int_rr.gen_lock.req_q_reg[3]_0
+                         LUT6 (Prop_lut6_I1_O)        0.124    12.651 f  i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_demux/i_counter/gen_arbiter.gen_int_rr.gen_lock.req_q[3]_i_3/O
+                         net (fo=1, unplaced)         0.449    13.100    i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_demux/i_counter/gen_arbiter.gen_int_rr.gen_lock.req_q[3]_i_3_n_459
+                         LUT6 (Prop_lut6_I3_O)        0.124    13.224 r  i_croc_soc/i_croc/i_main_xbar/gen_demux[3].i_demux/i_counter/gen_arbiter.gen_int_rr.gen_lock.req_q[3]_i_1__3/O
+                         net (fo=27, unplaced)        0.516    13.740    i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/D[2]
+                         LUT5 (Prop_lut5_I2_O)        0.124    13.864 r  i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/result_q[31]_i_11/O
+                         net (fo=25, unplaced)        0.514    14.378    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/counter_q[1]_i_4__1_0
+                         LUT5 (Prop_lut5_I2_O)        0.124    14.502 r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/select_q[1]_i_9__1/O
+                         net (fo=1, unplaced)         1.111    15.613    i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/select_q[1]_i_3_2
+                         LUT6 (Prop_lut6_I1_O)        0.124    15.737 r  i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/select_q[1]_i_4/O
+                         net (fo=2, unplaced)         0.913    16.650    i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/select_q[1]_i_4_n_459
+                         LUT6 (Prop_lut6_I0_O)        0.124    16.774 f  i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/select_q[1]_i_3/O
+                         net (fo=7, unplaced)         0.484    17.258    i_croc_soc/i_user/i_obi_demux/i_counter/user_idx[0]
+                         LUT6 (Prop_lut6_I5_O)        0.124    17.382 r  i_croc_soc/i_user/i_obi_demux/i_counter/mult_return_i_33/O
+                         net (fo=1236, unplaced)      0.589    17.971    i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/user_reg16_q_reg[0]
+                         LUT2 (Prop_lut2_I1_O)        0.124    18.095 r  i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/i__carry_i_3__0/O
+                         net (fo=1, unplaced)         0.000    18.095    i_croc_soc/i_user/i_simple_alu/result1__1230_i_1[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    18.628 r  i_croc_soc/i_user/i_simple_alu/__11/i__carry/CO[3]
+                         net (fo=1, unplaced)         0.009    18.637    i_croc_soc/i_user/i_simple_alu/__11/i__carry_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    18.754 r  i_croc_soc/i_user/i_simple_alu/__11/i__carry__0/CO[3]
+                         net (fo=1, unplaced)         0.000    18.754    i_croc_soc/i_user/i_simple_alu/__11/i__carry__0_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    18.871 r  i_croc_soc/i_user/i_simple_alu/__11/i__carry__1/CO[3]
+                         net (fo=1, unplaced)         0.000    18.871    i_croc_soc/i_user/i_simple_alu/__11/i__carry__1_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    18.988 r  i_croc_soc/i_user/i_simple_alu/__11/i__carry__2/CO[3]
+                         net (fo=1, unplaced)         0.000    18.988    i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/result1__1086_i_4_0[0]
+                         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.281    19.269 f  i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/result1__1023_i_9/CO[0]
+                         net (fo=16, unplaced)        0.365    19.634    i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/result1__1023_i_9_n_462
+                         LUT3 (Prop_lut3_I2_O)        0.359    19.993 r  i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/result1__1023_i_4/O
+                         net (fo=1, unplaced)         0.000    19.993    i_croc_soc/i_user/i_simple_alu/DI[0]
+                         CARRY4 (Prop_carry4_DI[0]_CO[3])
+                                                      0.576    20.569 r  i_croc_soc/i_user/i_simple_alu/result1__1023/CO[3]
+                         net (fo=1, unplaced)         0.009    20.578    i_croc_soc/i_user/i_simple_alu/result1__1023_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    20.695 r  i_croc_soc/i_user/i_simple_alu/result1__1024/CO[3]
+                         net (fo=1, unplaced)         0.000    20.695    i_croc_soc/i_user/i_simple_alu/result1__1024_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    20.812 r  i_croc_soc/i_user/i_simple_alu/result1__1025/CO[3]
+                         net (fo=1, unplaced)         0.000    20.812    i_croc_soc/i_user/i_simple_alu/result1__1025_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    20.929 r  i_croc_soc/i_user/i_simple_alu/result1__1026/CO[3]
+                         net (fo=1, unplaced)         0.000    20.929    i_croc_soc/i_user/i_simple_alu/result1__1026_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    21.046 r  i_croc_soc/i_user/i_simple_alu/result1__1027/CO[3]
+                         net (fo=1, unplaced)         0.000    21.046    i_croc_soc/i_user/i_simple_alu/result1__1027_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    21.163 r  i_croc_soc/i_user/i_simple_alu/result1__1028/CO[3]
+                         net (fo=1, unplaced)         0.000    21.163    i_croc_soc/i_user/i_simple_alu/result1__1028_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    21.280 r  i_croc_soc/i_user/i_simple_alu/result1__1029/CO[3]
+                         net (fo=1, unplaced)         0.000    21.280    i_croc_soc/i_user/i_simple_alu/result1__1029_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    21.397 r  i_croc_soc/i_user/i_simple_alu/result1__1030/CO[3]
+                         net (fo=1, unplaced)         0.000    21.397    i_croc_soc/i_user/i_simple_alu/result1__1030_n_459
+                         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.281    21.678 r  i_croc_soc/i_user/i_simple_alu/result1__1031/CO[0]
+                         net (fo=37, unplaced)        0.386    22.064    i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/in[25]
+                         LUT6 (Prop_lut6_I5_O)        0.367    22.431 r  i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/result1__1032_i_4/O
+                         net (fo=1, unplaced)         0.000    22.431    i_croc_soc/i_user/i_simple_alu/result1__1041_1[0]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    22.964 r  i_croc_soc/i_user/i_simple_alu/result1__1032/CO[3]
+                         net (fo=1, unplaced)         0.009    22.973    i_croc_soc/i_user/i_simple_alu/result1__1032_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    23.090 r  i_croc_soc/i_user/i_simple_alu/result1__1033/CO[3]
+                         net (fo=1, unplaced)         0.000    23.090    i_croc_soc/i_user/i_simple_alu/result1__1033_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    23.207 r  i_croc_soc/i_user/i_simple_alu/result1__1034/CO[3]
+                         net (fo=1, unplaced)         0.000    23.207    i_croc_soc/i_user/i_simple_alu/result1__1034_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    23.324 r  i_croc_soc/i_user/i_simple_alu/result1__1035/CO[3]
+                         net (fo=1, unplaced)         0.000    23.324    i_croc_soc/i_user/i_simple_alu/result1__1035_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    23.441 r  i_croc_soc/i_user/i_simple_alu/result1__1036/CO[3]
+                         net (fo=1, unplaced)         0.000    23.441    i_croc_soc/i_user/i_simple_alu/result1__1036_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    23.558 r  i_croc_soc/i_user/i_simple_alu/result1__1037/CO[3]
+                         net (fo=1, unplaced)         0.000    23.558    i_croc_soc/i_user/i_simple_alu/result1__1037_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    23.675 r  i_croc_soc/i_user/i_simple_alu/result1__1038/CO[3]
+                         net (fo=1, unplaced)         0.000    23.675    i_croc_soc/i_user/i_simple_alu/result1__1038_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    23.792 r  i_croc_soc/i_user/i_simple_alu/result1__1039/CO[3]
+                         net (fo=1, unplaced)         0.000    23.792    i_croc_soc/i_user/i_simple_alu/result1__1039_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    23.971 r  i_croc_soc/i_user/i_simple_alu/result1__1040/CO[1]
+                         net (fo=37, unplaced)        0.600    24.571    i_croc_soc/i_user/i_simple_alu/result1__1040_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    25.374 r  i_croc_soc/i_user/i_simple_alu/result1__1041/CO[3]
+                         net (fo=1, unplaced)         0.009    25.383    i_croc_soc/i_user/i_simple_alu/result1__1041_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    25.500 r  i_croc_soc/i_user/i_simple_alu/result1__1042/CO[3]
+                         net (fo=1, unplaced)         0.000    25.500    i_croc_soc/i_user/i_simple_alu/result1__1042_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    25.617 r  i_croc_soc/i_user/i_simple_alu/result1__1043/CO[3]
+                         net (fo=1, unplaced)         0.000    25.617    i_croc_soc/i_user/i_simple_alu/result1__1043_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    25.734 r  i_croc_soc/i_user/i_simple_alu/result1__1044/CO[3]
+                         net (fo=1, unplaced)         0.000    25.734    i_croc_soc/i_user/i_simple_alu/result1__1044_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    25.851 r  i_croc_soc/i_user/i_simple_alu/result1__1045/CO[3]
+                         net (fo=1, unplaced)         0.000    25.851    i_croc_soc/i_user/i_simple_alu/result1__1045_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    25.968 r  i_croc_soc/i_user/i_simple_alu/result1__1046/CO[3]
+                         net (fo=1, unplaced)         0.000    25.968    i_croc_soc/i_user/i_simple_alu/result1__1046_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    26.085 r  i_croc_soc/i_user/i_simple_alu/result1__1047/CO[3]
+                         net (fo=1, unplaced)         0.000    26.085    i_croc_soc/i_user/i_simple_alu/result1__1047_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    26.202 r  i_croc_soc/i_user/i_simple_alu/result1__1048/CO[3]
+                         net (fo=1, unplaced)         0.000    26.202    i_croc_soc/i_user/i_simple_alu/result1__1048_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    26.381 r  i_croc_soc/i_user/i_simple_alu/result1__1049/CO[1]
+                         net (fo=37, unplaced)        0.600    26.981    i_croc_soc/i_user/i_simple_alu/result1__1049_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    27.784 r  i_croc_soc/i_user/i_simple_alu/result1__1050/CO[3]
+                         net (fo=1, unplaced)         0.009    27.793    i_croc_soc/i_user/i_simple_alu/result1__1050_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    27.910 r  i_croc_soc/i_user/i_simple_alu/result1__1051/CO[3]
+                         net (fo=1, unplaced)         0.000    27.910    i_croc_soc/i_user/i_simple_alu/result1__1051_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    28.027 r  i_croc_soc/i_user/i_simple_alu/result1__1052/CO[3]
+                         net (fo=1, unplaced)         0.000    28.027    i_croc_soc/i_user/i_simple_alu/result1__1052_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    28.144 r  i_croc_soc/i_user/i_simple_alu/result1__1053/CO[3]
+                         net (fo=1, unplaced)         0.000    28.144    i_croc_soc/i_user/i_simple_alu/result1__1053_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    28.261 r  i_croc_soc/i_user/i_simple_alu/result1__1054/CO[3]
+                         net (fo=1, unplaced)         0.000    28.261    i_croc_soc/i_user/i_simple_alu/result1__1054_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    28.378 r  i_croc_soc/i_user/i_simple_alu/result1__1055/CO[3]
+                         net (fo=1, unplaced)         0.000    28.378    i_croc_soc/i_user/i_simple_alu/result1__1055_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    28.495 r  i_croc_soc/i_user/i_simple_alu/result1__1056/CO[3]
+                         net (fo=1, unplaced)         0.000    28.495    i_croc_soc/i_user/i_simple_alu/result1__1056_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    28.612 r  i_croc_soc/i_user/i_simple_alu/result1__1057/CO[3]
+                         net (fo=1, unplaced)         0.000    28.612    i_croc_soc/i_user/i_simple_alu/result1__1057_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    28.791 r  i_croc_soc/i_user/i_simple_alu/result1__1058/CO[1]
+                         net (fo=37, unplaced)        0.600    29.391    i_croc_soc/i_user/i_simple_alu/result1__1058_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    30.194 r  i_croc_soc/i_user/i_simple_alu/result1__1059/CO[3]
+                         net (fo=1, unplaced)         0.009    30.203    i_croc_soc/i_user/i_simple_alu/result1__1059_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    30.320 r  i_croc_soc/i_user/i_simple_alu/result1__1060/CO[3]
+                         net (fo=1, unplaced)         0.000    30.320    i_croc_soc/i_user/i_simple_alu/result1__1060_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    30.437 r  i_croc_soc/i_user/i_simple_alu/result1__1061/CO[3]
+                         net (fo=1, unplaced)         0.000    30.437    i_croc_soc/i_user/i_simple_alu/result1__1061_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    30.554 r  i_croc_soc/i_user/i_simple_alu/result1__1062/CO[3]
+                         net (fo=1, unplaced)         0.000    30.554    i_croc_soc/i_user/i_simple_alu/result1__1062_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    30.671 r  i_croc_soc/i_user/i_simple_alu/result1__1063/CO[3]
+                         net (fo=1, unplaced)         0.000    30.671    i_croc_soc/i_user/i_simple_alu/result1__1063_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    30.788 r  i_croc_soc/i_user/i_simple_alu/result1__1064/CO[3]
+                         net (fo=1, unplaced)         0.000    30.788    i_croc_soc/i_user/i_simple_alu/result1__1064_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    30.905 r  i_croc_soc/i_user/i_simple_alu/result1__1065/CO[3]
+                         net (fo=1, unplaced)         0.000    30.905    i_croc_soc/i_user/i_simple_alu/result1__1065_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    31.022 r  i_croc_soc/i_user/i_simple_alu/result1__1066/CO[3]
+                         net (fo=1, unplaced)         0.000    31.022    i_croc_soc/i_user/i_simple_alu/result1__1066_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    31.201 r  i_croc_soc/i_user/i_simple_alu/result1__1067/CO[1]
+                         net (fo=37, unplaced)        0.600    31.801    i_croc_soc/i_user/i_simple_alu/result1__1067_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    32.604 r  i_croc_soc/i_user/i_simple_alu/result1__1068/CO[3]
+                         net (fo=1, unplaced)         0.009    32.613    i_croc_soc/i_user/i_simple_alu/result1__1068_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    32.730 r  i_croc_soc/i_user/i_simple_alu/result1__1069/CO[3]
+                         net (fo=1, unplaced)         0.000    32.730    i_croc_soc/i_user/i_simple_alu/result1__1069_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    32.847 r  i_croc_soc/i_user/i_simple_alu/result1__1070/CO[3]
+                         net (fo=1, unplaced)         0.000    32.847    i_croc_soc/i_user/i_simple_alu/result1__1070_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    32.964 r  i_croc_soc/i_user/i_simple_alu/result1__1071/CO[3]
+                         net (fo=1, unplaced)         0.000    32.964    i_croc_soc/i_user/i_simple_alu/result1__1071_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    33.081 r  i_croc_soc/i_user/i_simple_alu/result1__1072/CO[3]
+                         net (fo=1, unplaced)         0.000    33.081    i_croc_soc/i_user/i_simple_alu/result1__1072_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    33.198 r  i_croc_soc/i_user/i_simple_alu/result1__1073/CO[3]
+                         net (fo=1, unplaced)         0.000    33.198    i_croc_soc/i_user/i_simple_alu/result1__1073_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    33.315 r  i_croc_soc/i_user/i_simple_alu/result1__1074/CO[3]
+                         net (fo=1, unplaced)         0.000    33.315    i_croc_soc/i_user/i_simple_alu/result1__1074_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    33.432 r  i_croc_soc/i_user/i_simple_alu/result1__1075/CO[3]
+                         net (fo=1, unplaced)         0.000    33.432    i_croc_soc/i_user/i_simple_alu/result1__1075_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    33.611 r  i_croc_soc/i_user/i_simple_alu/result1__1076/CO[1]
+                         net (fo=37, unplaced)        0.600    34.211    i_croc_soc/i_user/i_simple_alu/result1__1076_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    35.014 r  i_croc_soc/i_user/i_simple_alu/result1__1077/CO[3]
+                         net (fo=1, unplaced)         0.009    35.023    i_croc_soc/i_user/i_simple_alu/result1__1077_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    35.140 r  i_croc_soc/i_user/i_simple_alu/result1__1078/CO[3]
+                         net (fo=1, unplaced)         0.000    35.140    i_croc_soc/i_user/i_simple_alu/result1__1078_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    35.257 r  i_croc_soc/i_user/i_simple_alu/result1__1079/CO[3]
+                         net (fo=1, unplaced)         0.000    35.257    i_croc_soc/i_user/i_simple_alu/result1__1079_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    35.374 r  i_croc_soc/i_user/i_simple_alu/result1__1080/CO[3]
+                         net (fo=1, unplaced)         0.000    35.374    i_croc_soc/i_user/i_simple_alu/result1__1080_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    35.491 r  i_croc_soc/i_user/i_simple_alu/result1__1081/CO[3]
+                         net (fo=1, unplaced)         0.000    35.491    i_croc_soc/i_user/i_simple_alu/result1__1081_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    35.608 r  i_croc_soc/i_user/i_simple_alu/result1__1082/CO[3]
+                         net (fo=1, unplaced)         0.000    35.608    i_croc_soc/i_user/i_simple_alu/result1__1082_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    35.725 r  i_croc_soc/i_user/i_simple_alu/result1__1083/CO[3]
+                         net (fo=1, unplaced)         0.000    35.725    i_croc_soc/i_user/i_simple_alu/result1__1083_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    35.842 r  i_croc_soc/i_user/i_simple_alu/result1__1084/CO[3]
+                         net (fo=1, unplaced)         0.000    35.842    i_croc_soc/i_user/i_simple_alu/result1__1084_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    36.021 r  i_croc_soc/i_user/i_simple_alu/result1__1085/CO[1]
+                         net (fo=37, unplaced)        0.600    36.621    i_croc_soc/i_user/i_simple_alu/result1__1085_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    37.424 r  i_croc_soc/i_user/i_simple_alu/result1__1086/CO[3]
+                         net (fo=1, unplaced)         0.009    37.433    i_croc_soc/i_user/i_simple_alu/result1__1086_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    37.550 r  i_croc_soc/i_user/i_simple_alu/result1__1087/CO[3]
+                         net (fo=1, unplaced)         0.000    37.550    i_croc_soc/i_user/i_simple_alu/result1__1087_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    37.667 r  i_croc_soc/i_user/i_simple_alu/result1__1088/CO[3]
+                         net (fo=1, unplaced)         0.000    37.667    i_croc_soc/i_user/i_simple_alu/result1__1088_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    37.784 r  i_croc_soc/i_user/i_simple_alu/result1__1089/CO[3]
+                         net (fo=1, unplaced)         0.000    37.784    i_croc_soc/i_user/i_simple_alu/result1__1089_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    37.901 r  i_croc_soc/i_user/i_simple_alu/result1__1090/CO[3]
+                         net (fo=1, unplaced)         0.000    37.901    i_croc_soc/i_user/i_simple_alu/result1__1090_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    38.018 r  i_croc_soc/i_user/i_simple_alu/result1__1091/CO[3]
+                         net (fo=1, unplaced)         0.000    38.018    i_croc_soc/i_user/i_simple_alu/result1__1091_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    38.135 r  i_croc_soc/i_user/i_simple_alu/result1__1092/CO[3]
+                         net (fo=1, unplaced)         0.000    38.135    i_croc_soc/i_user/i_simple_alu/result1__1092_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    38.252 r  i_croc_soc/i_user/i_simple_alu/result1__1093/CO[3]
+                         net (fo=1, unplaced)         0.000    38.252    i_croc_soc/i_user/i_simple_alu/result1__1093_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    38.431 r  i_croc_soc/i_user/i_simple_alu/result1__1094/CO[1]
+                         net (fo=37, unplaced)        0.600    39.031    i_croc_soc/i_user/i_simple_alu/result1__1094_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    39.834 r  i_croc_soc/i_user/i_simple_alu/result1__1095/CO[3]
+                         net (fo=1, unplaced)         0.009    39.843    i_croc_soc/i_user/i_simple_alu/result1__1095_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    39.960 r  i_croc_soc/i_user/i_simple_alu/result1__1096/CO[3]
+                         net (fo=1, unplaced)         0.000    39.960    i_croc_soc/i_user/i_simple_alu/result1__1096_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    40.077 r  i_croc_soc/i_user/i_simple_alu/result1__1097/CO[3]
+                         net (fo=1, unplaced)         0.000    40.077    i_croc_soc/i_user/i_simple_alu/result1__1097_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    40.194 r  i_croc_soc/i_user/i_simple_alu/result1__1098/CO[3]
+                         net (fo=1, unplaced)         0.000    40.194    i_croc_soc/i_user/i_simple_alu/result1__1098_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    40.311 r  i_croc_soc/i_user/i_simple_alu/result1__1099/CO[3]
+                         net (fo=1, unplaced)         0.000    40.311    i_croc_soc/i_user/i_simple_alu/result1__1099_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    40.428 r  i_croc_soc/i_user/i_simple_alu/result1__1100/CO[3]
+                         net (fo=1, unplaced)         0.000    40.428    i_croc_soc/i_user/i_simple_alu/result1__1100_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    40.545 r  i_croc_soc/i_user/i_simple_alu/result1__1101/CO[3]
+                         net (fo=1, unplaced)         0.000    40.545    i_croc_soc/i_user/i_simple_alu/result1__1101_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    40.662 r  i_croc_soc/i_user/i_simple_alu/result1__1102/CO[3]
+                         net (fo=1, unplaced)         0.000    40.662    i_croc_soc/i_user/i_simple_alu/result1__1102_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    40.841 r  i_croc_soc/i_user/i_simple_alu/result1__1103/CO[1]
+                         net (fo=37, unplaced)        0.600    41.441    i_croc_soc/i_user/i_simple_alu/result1__1103_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    42.244 r  i_croc_soc/i_user/i_simple_alu/result1__1104/CO[3]
+                         net (fo=1, unplaced)         0.009    42.253    i_croc_soc/i_user/i_simple_alu/result1__1104_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    42.370 r  i_croc_soc/i_user/i_simple_alu/result1__1105/CO[3]
+                         net (fo=1, unplaced)         0.000    42.370    i_croc_soc/i_user/i_simple_alu/result1__1105_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    42.487 r  i_croc_soc/i_user/i_simple_alu/result1__1106/CO[3]
+                         net (fo=1, unplaced)         0.000    42.487    i_croc_soc/i_user/i_simple_alu/result1__1106_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    42.604 r  i_croc_soc/i_user/i_simple_alu/result1__1107/CO[3]
+                         net (fo=1, unplaced)         0.000    42.604    i_croc_soc/i_user/i_simple_alu/result1__1107_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    42.721 r  i_croc_soc/i_user/i_simple_alu/result1__1108/CO[3]
+                         net (fo=1, unplaced)         0.000    42.721    i_croc_soc/i_user/i_simple_alu/result1__1108_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    42.838 r  i_croc_soc/i_user/i_simple_alu/result1__1109/CO[3]
+                         net (fo=1, unplaced)         0.000    42.838    i_croc_soc/i_user/i_simple_alu/result1__1109_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    42.955 r  i_croc_soc/i_user/i_simple_alu/result1__1110/CO[3]
+                         net (fo=1, unplaced)         0.000    42.955    i_croc_soc/i_user/i_simple_alu/result1__1110_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    43.072 r  i_croc_soc/i_user/i_simple_alu/result1__1111/CO[3]
+                         net (fo=1, unplaced)         0.000    43.072    i_croc_soc/i_user/i_simple_alu/result1__1111_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    43.251 r  i_croc_soc/i_user/i_simple_alu/result1__1112/CO[1]
+                         net (fo=37, unplaced)        0.600    43.851    i_croc_soc/i_user/i_simple_alu/result1__1112_i_2[0]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    44.654 r  i_croc_soc/i_user/i_simple_alu/result1__1113/CO[3]
+                         net (fo=1, unplaced)         0.009    44.663    i_croc_soc/i_user/i_simple_alu/result1__1113_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    44.780 r  i_croc_soc/i_user/i_simple_alu/result1__1114/CO[3]
+                         net (fo=1, unplaced)         0.000    44.780    i_croc_soc/i_user/i_simple_alu/result1__1114_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    44.897 r  i_croc_soc/i_user/i_simple_alu/result1__1115/CO[3]
+                         net (fo=1, unplaced)         0.000    44.897    i_croc_soc/i_user/i_simple_alu/result1__1115_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    45.014 r  i_croc_soc/i_user/i_simple_alu/result1__1116/CO[3]
+                         net (fo=1, unplaced)         0.000    45.014    i_croc_soc/i_user/i_simple_alu/result1__1116_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    45.131 r  i_croc_soc/i_user/i_simple_alu/result1__1117/CO[3]
+                         net (fo=1, unplaced)         0.000    45.131    i_croc_soc/i_user/i_simple_alu/result1__1117_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    45.248 r  i_croc_soc/i_user/i_simple_alu/result1__1118/CO[3]
+                         net (fo=1, unplaced)         0.000    45.248    i_croc_soc/i_user/i_simple_alu/result1__1118_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    45.365 r  i_croc_soc/i_user/i_simple_alu/result1__1119/CO[3]
+                         net (fo=1, unplaced)         0.000    45.365    i_croc_soc/i_user/i_simple_alu/result1__1119_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    45.482 r  i_croc_soc/i_user/i_simple_alu/result1__1120/CO[3]
+                         net (fo=1, unplaced)         0.000    45.482    i_croc_soc/i_user/i_simple_alu/result1__1120_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    45.661 r  i_croc_soc/i_user/i_simple_alu/result1__1121/CO[1]
+                         net (fo=37, unplaced)        0.600    46.261    i_croc_soc/i_user/i_simple_alu/result1__1121_i_2[0]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    47.064 r  i_croc_soc/i_user/i_simple_alu/result1__1122/CO[3]
+                         net (fo=1, unplaced)         0.009    47.073    i_croc_soc/i_user/i_simple_alu/result1__1122_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    47.190 r  i_croc_soc/i_user/i_simple_alu/result1__1123/CO[3]
+                         net (fo=1, unplaced)         0.000    47.190    i_croc_soc/i_user/i_simple_alu/result1__1123_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    47.307 r  i_croc_soc/i_user/i_simple_alu/result1__1124/CO[3]
+                         net (fo=1, unplaced)         0.000    47.307    i_croc_soc/i_user/i_simple_alu/result1__1124_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    47.424 r  i_croc_soc/i_user/i_simple_alu/result1__1125/CO[3]
+                         net (fo=1, unplaced)         0.000    47.424    i_croc_soc/i_user/i_simple_alu/result1__1125_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    47.541 r  i_croc_soc/i_user/i_simple_alu/result1__1126/CO[3]
+                         net (fo=1, unplaced)         0.000    47.541    i_croc_soc/i_user/i_simple_alu/result1__1126_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    47.658 r  i_croc_soc/i_user/i_simple_alu/result1__1127/CO[3]
+                         net (fo=1, unplaced)         0.000    47.658    i_croc_soc/i_user/i_simple_alu/result1__1127_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    47.775 r  i_croc_soc/i_user/i_simple_alu/result1__1128/CO[3]
+                         net (fo=1, unplaced)         0.000    47.775    i_croc_soc/i_user/i_simple_alu/result1__1128_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    47.892 r  i_croc_soc/i_user/i_simple_alu/result1__1129/CO[3]
+                         net (fo=1, unplaced)         0.000    47.892    i_croc_soc/i_user/i_simple_alu/result1__1129_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    48.071 r  i_croc_soc/i_user/i_simple_alu/result1__1130/CO[1]
+                         net (fo=37, unplaced)        0.600    48.671    i_croc_soc/i_user/i_simple_alu/result1__1130_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    49.474 r  i_croc_soc/i_user/i_simple_alu/result1__1131/CO[3]
+                         net (fo=1, unplaced)         0.009    49.483    i_croc_soc/i_user/i_simple_alu/result1__1131_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    49.600 r  i_croc_soc/i_user/i_simple_alu/result1__1132/CO[3]
+                         net (fo=1, unplaced)         0.000    49.600    i_croc_soc/i_user/i_simple_alu/result1__1132_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    49.717 r  i_croc_soc/i_user/i_simple_alu/result1__1133/CO[3]
+                         net (fo=1, unplaced)         0.000    49.717    i_croc_soc/i_user/i_simple_alu/result1__1133_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    49.834 r  i_croc_soc/i_user/i_simple_alu/result1__1134/CO[3]
+                         net (fo=1, unplaced)         0.000    49.834    i_croc_soc/i_user/i_simple_alu/result1__1134_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    49.951 r  i_croc_soc/i_user/i_simple_alu/result1__1135/CO[3]
+                         net (fo=1, unplaced)         0.000    49.951    i_croc_soc/i_user/i_simple_alu/result1__1135_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    50.068 r  i_croc_soc/i_user/i_simple_alu/result1__1136/CO[3]
+                         net (fo=1, unplaced)         0.000    50.068    i_croc_soc/i_user/i_simple_alu/result1__1136_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    50.185 r  i_croc_soc/i_user/i_simple_alu/result1__1137/CO[3]
+                         net (fo=1, unplaced)         0.000    50.185    i_croc_soc/i_user/i_simple_alu/result1__1137_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    50.302 r  i_croc_soc/i_user/i_simple_alu/result1__1138/CO[3]
+                         net (fo=1, unplaced)         0.000    50.302    i_croc_soc/i_user/i_simple_alu/result1__1138_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    50.481 r  i_croc_soc/i_user/i_simple_alu/result1__1139/CO[1]
+                         net (fo=37, unplaced)        0.600    51.081    i_croc_soc/i_user/i_simple_alu/result1__1139_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    51.884 r  i_croc_soc/i_user/i_simple_alu/result1__1140/CO[3]
+                         net (fo=1, unplaced)         0.009    51.893    i_croc_soc/i_user/i_simple_alu/result1__1140_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    52.010 r  i_croc_soc/i_user/i_simple_alu/result1__1141/CO[3]
+                         net (fo=1, unplaced)         0.000    52.010    i_croc_soc/i_user/i_simple_alu/result1__1141_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    52.127 r  i_croc_soc/i_user/i_simple_alu/result1__1142/CO[3]
+                         net (fo=1, unplaced)         0.000    52.127    i_croc_soc/i_user/i_simple_alu/result1__1142_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    52.244 r  i_croc_soc/i_user/i_simple_alu/result1__1143/CO[3]
+                         net (fo=1, unplaced)         0.000    52.244    i_croc_soc/i_user/i_simple_alu/result1__1143_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    52.361 r  i_croc_soc/i_user/i_simple_alu/result1__1144/CO[3]
+                         net (fo=1, unplaced)         0.000    52.361    i_croc_soc/i_user/i_simple_alu/result1__1144_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    52.478 r  i_croc_soc/i_user/i_simple_alu/result1__1145/CO[3]
+                         net (fo=1, unplaced)         0.000    52.478    i_croc_soc/i_user/i_simple_alu/result1__1145_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    52.595 r  i_croc_soc/i_user/i_simple_alu/result1__1146/CO[3]
+                         net (fo=1, unplaced)         0.000    52.595    i_croc_soc/i_user/i_simple_alu/result1__1146_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    52.712 r  i_croc_soc/i_user/i_simple_alu/result1__1147/CO[3]
+                         net (fo=1, unplaced)         0.000    52.712    i_croc_soc/i_user/i_simple_alu/result1__1147_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    52.891 r  i_croc_soc/i_user/i_simple_alu/result1__1148/CO[1]
+                         net (fo=37, unplaced)        0.600    53.491    i_croc_soc/i_user/i_simple_alu/result1__1148_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    54.294 r  i_croc_soc/i_user/i_simple_alu/result1__1149/CO[3]
+                         net (fo=1, unplaced)         0.009    54.303    i_croc_soc/i_user/i_simple_alu/result1__1149_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    54.420 r  i_croc_soc/i_user/i_simple_alu/result1__1150/CO[3]
+                         net (fo=1, unplaced)         0.000    54.420    i_croc_soc/i_user/i_simple_alu/result1__1150_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    54.537 r  i_croc_soc/i_user/i_simple_alu/result1__1151/CO[3]
+                         net (fo=1, unplaced)         0.000    54.537    i_croc_soc/i_user/i_simple_alu/result1__1151_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    54.654 r  i_croc_soc/i_user/i_simple_alu/result1__1152/CO[3]
+                         net (fo=1, unplaced)         0.000    54.654    i_croc_soc/i_user/i_simple_alu/result1__1152_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    54.771 r  i_croc_soc/i_user/i_simple_alu/result1__1153/CO[3]
+                         net (fo=1, unplaced)         0.000    54.771    i_croc_soc/i_user/i_simple_alu/result1__1153_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    54.888 r  i_croc_soc/i_user/i_simple_alu/result1__1154/CO[3]
+                         net (fo=1, unplaced)         0.000    54.888    i_croc_soc/i_user/i_simple_alu/result1__1154_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    55.005 r  i_croc_soc/i_user/i_simple_alu/result1__1155/CO[3]
+                         net (fo=1, unplaced)         0.000    55.005    i_croc_soc/i_user/i_simple_alu/result1__1155_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    55.122 r  i_croc_soc/i_user/i_simple_alu/result1__1156/CO[3]
+                         net (fo=1, unplaced)         0.000    55.122    i_croc_soc/i_user/i_simple_alu/result1__1156_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    55.301 r  i_croc_soc/i_user/i_simple_alu/result1__1157/CO[1]
+                         net (fo=37, unplaced)        0.600    55.901    i_croc_soc/i_user/i_simple_alu/result1__1157_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    56.704 r  i_croc_soc/i_user/i_simple_alu/result1__1158/CO[3]
+                         net (fo=1, unplaced)         0.009    56.713    i_croc_soc/i_user/i_simple_alu/result1__1158_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    56.830 r  i_croc_soc/i_user/i_simple_alu/result1__1159/CO[3]
+                         net (fo=1, unplaced)         0.000    56.830    i_croc_soc/i_user/i_simple_alu/result1__1159_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    56.947 r  i_croc_soc/i_user/i_simple_alu/result1__1160/CO[3]
+                         net (fo=1, unplaced)         0.000    56.947    i_croc_soc/i_user/i_simple_alu/result1__1160_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    57.064 r  i_croc_soc/i_user/i_simple_alu/result1__1161/CO[3]
+                         net (fo=1, unplaced)         0.000    57.064    i_croc_soc/i_user/i_simple_alu/result1__1161_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    57.181 r  i_croc_soc/i_user/i_simple_alu/result1__1162/CO[3]
+                         net (fo=1, unplaced)         0.000    57.181    i_croc_soc/i_user/i_simple_alu/result1__1162_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    57.298 r  i_croc_soc/i_user/i_simple_alu/result1__1163/CO[3]
+                         net (fo=1, unplaced)         0.000    57.298    i_croc_soc/i_user/i_simple_alu/result1__1163_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    57.415 r  i_croc_soc/i_user/i_simple_alu/result1__1164/CO[3]
+                         net (fo=1, unplaced)         0.000    57.415    i_croc_soc/i_user/i_simple_alu/result1__1164_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    57.532 r  i_croc_soc/i_user/i_simple_alu/result1__1165/CO[3]
+                         net (fo=1, unplaced)         0.000    57.532    i_croc_soc/i_user/i_simple_alu/result1__1165_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    57.711 r  i_croc_soc/i_user/i_simple_alu/result1__1166/CO[1]
+                         net (fo=37, unplaced)        0.600    58.311    i_croc_soc/i_user/i_simple_alu/result1__1166_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    59.114 r  i_croc_soc/i_user/i_simple_alu/result1__1167/CO[3]
+                         net (fo=1, unplaced)         0.009    59.123    i_croc_soc/i_user/i_simple_alu/result1__1167_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    59.240 r  i_croc_soc/i_user/i_simple_alu/result1__1168/CO[3]
+                         net (fo=1, unplaced)         0.000    59.240    i_croc_soc/i_user/i_simple_alu/result1__1168_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    59.357 r  i_croc_soc/i_user/i_simple_alu/result1__1169/CO[3]
+                         net (fo=1, unplaced)         0.000    59.357    i_croc_soc/i_user/i_simple_alu/result1__1169_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    59.474 r  i_croc_soc/i_user/i_simple_alu/result1__1170/CO[3]
+                         net (fo=1, unplaced)         0.000    59.474    i_croc_soc/i_user/i_simple_alu/result1__1170_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    59.591 r  i_croc_soc/i_user/i_simple_alu/result1__1171/CO[3]
+                         net (fo=1, unplaced)         0.000    59.591    i_croc_soc/i_user/i_simple_alu/result1__1171_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    59.708 r  i_croc_soc/i_user/i_simple_alu/result1__1172/CO[3]
+                         net (fo=1, unplaced)         0.000    59.708    i_croc_soc/i_user/i_simple_alu/result1__1172_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    59.825 r  i_croc_soc/i_user/i_simple_alu/result1__1173/CO[3]
+                         net (fo=1, unplaced)         0.000    59.825    i_croc_soc/i_user/i_simple_alu/result1__1173_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    59.942 r  i_croc_soc/i_user/i_simple_alu/result1__1174/CO[3]
+                         net (fo=1, unplaced)         0.000    59.942    i_croc_soc/i_user/i_simple_alu/result1__1174_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    60.121 r  i_croc_soc/i_user/i_simple_alu/result1__1175/CO[1]
+                         net (fo=37, unplaced)        0.600    60.721    i_croc_soc/i_user/i_simple_alu/result1__1175_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    61.524 r  i_croc_soc/i_user/i_simple_alu/result1__1176/CO[3]
+                         net (fo=1, unplaced)         0.009    61.533    i_croc_soc/i_user/i_simple_alu/result1__1176_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    61.650 r  i_croc_soc/i_user/i_simple_alu/result1__1177/CO[3]
+                         net (fo=1, unplaced)         0.000    61.650    i_croc_soc/i_user/i_simple_alu/result1__1177_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    61.767 r  i_croc_soc/i_user/i_simple_alu/result1__1178/CO[3]
+                         net (fo=1, unplaced)         0.000    61.767    i_croc_soc/i_user/i_simple_alu/result1__1178_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    61.884 r  i_croc_soc/i_user/i_simple_alu/result1__1179/CO[3]
+                         net (fo=1, unplaced)         0.000    61.884    i_croc_soc/i_user/i_simple_alu/result1__1179_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    62.001 r  i_croc_soc/i_user/i_simple_alu/result1__1180/CO[3]
+                         net (fo=1, unplaced)         0.000    62.001    i_croc_soc/i_user/i_simple_alu/result1__1180_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    62.118 r  i_croc_soc/i_user/i_simple_alu/result1__1181/CO[3]
+                         net (fo=1, unplaced)         0.000    62.118    i_croc_soc/i_user/i_simple_alu/result1__1181_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    62.235 r  i_croc_soc/i_user/i_simple_alu/result1__1182/CO[3]
+                         net (fo=1, unplaced)         0.000    62.235    i_croc_soc/i_user/i_simple_alu/result1__1182_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    62.352 r  i_croc_soc/i_user/i_simple_alu/result1__1183/CO[3]
+                         net (fo=1, unplaced)         0.000    62.352    i_croc_soc/i_user/i_simple_alu/result1__1183_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    62.531 r  i_croc_soc/i_user/i_simple_alu/result1__1184/CO[1]
+                         net (fo=37, unplaced)        0.600    63.131    i_croc_soc/i_user/i_simple_alu/result1__1184_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    63.934 r  i_croc_soc/i_user/i_simple_alu/result1__1185/CO[3]
+                         net (fo=1, unplaced)         0.009    63.943    i_croc_soc/i_user/i_simple_alu/result1__1185_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    64.060 r  i_croc_soc/i_user/i_simple_alu/result1__1186/CO[3]
+                         net (fo=1, unplaced)         0.000    64.060    i_croc_soc/i_user/i_simple_alu/result1__1186_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    64.177 r  i_croc_soc/i_user/i_simple_alu/result1__1187/CO[3]
+                         net (fo=1, unplaced)         0.000    64.177    i_croc_soc/i_user/i_simple_alu/result1__1187_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    64.294 r  i_croc_soc/i_user/i_simple_alu/result1__1188/CO[3]
+                         net (fo=1, unplaced)         0.000    64.294    i_croc_soc/i_user/i_simple_alu/result1__1188_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    64.411 r  i_croc_soc/i_user/i_simple_alu/result1__1189/CO[3]
+                         net (fo=1, unplaced)         0.000    64.411    i_croc_soc/i_user/i_simple_alu/result1__1189_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    64.528 r  i_croc_soc/i_user/i_simple_alu/result1__1190/CO[3]
+                         net (fo=1, unplaced)         0.000    64.528    i_croc_soc/i_user/i_simple_alu/result1__1190_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    64.645 r  i_croc_soc/i_user/i_simple_alu/result1__1191/CO[3]
+                         net (fo=1, unplaced)         0.000    64.645    i_croc_soc/i_user/i_simple_alu/result1__1191_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    64.762 r  i_croc_soc/i_user/i_simple_alu/result1__1192/CO[3]
+                         net (fo=1, unplaced)         0.000    64.762    i_croc_soc/i_user/i_simple_alu/result1__1192_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    64.941 r  i_croc_soc/i_user/i_simple_alu/result1__1193/CO[1]
+                         net (fo=37, unplaced)        0.600    65.541    i_croc_soc/i_user/i_simple_alu/result1__1193_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    66.344 r  i_croc_soc/i_user/i_simple_alu/result1__1194/CO[3]
+                         net (fo=1, unplaced)         0.009    66.353    i_croc_soc/i_user/i_simple_alu/result1__1194_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    66.470 r  i_croc_soc/i_user/i_simple_alu/result1__1195/CO[3]
+                         net (fo=1, unplaced)         0.000    66.470    i_croc_soc/i_user/i_simple_alu/result1__1195_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    66.587 r  i_croc_soc/i_user/i_simple_alu/result1__1196/CO[3]
+                         net (fo=1, unplaced)         0.000    66.587    i_croc_soc/i_user/i_simple_alu/result1__1196_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    66.704 r  i_croc_soc/i_user/i_simple_alu/result1__1197/CO[3]
+                         net (fo=1, unplaced)         0.000    66.704    i_croc_soc/i_user/i_simple_alu/result1__1197_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    66.821 r  i_croc_soc/i_user/i_simple_alu/result1__1198/CO[3]
+                         net (fo=1, unplaced)         0.000    66.821    i_croc_soc/i_user/i_simple_alu/result1__1198_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    66.938 r  i_croc_soc/i_user/i_simple_alu/result1__1199/CO[3]
+                         net (fo=1, unplaced)         0.000    66.938    i_croc_soc/i_user/i_simple_alu/result1__1199_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    67.055 r  i_croc_soc/i_user/i_simple_alu/result1__1200/CO[3]
+                         net (fo=1, unplaced)         0.000    67.055    i_croc_soc/i_user/i_simple_alu/result1__1200_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    67.172 r  i_croc_soc/i_user/i_simple_alu/result1__1201/CO[3]
+                         net (fo=1, unplaced)         0.000    67.172    i_croc_soc/i_user/i_simple_alu/result1__1201_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    67.351 r  i_croc_soc/i_user/i_simple_alu/result1__1202/CO[1]
+                         net (fo=37, unplaced)        0.600    67.951    i_croc_soc/i_user/i_simple_alu/result1__1202_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    68.754 r  i_croc_soc/i_user/i_simple_alu/result1__1203/CO[3]
+                         net (fo=1, unplaced)         0.009    68.763    i_croc_soc/i_user/i_simple_alu/result1__1203_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    68.880 r  i_croc_soc/i_user/i_simple_alu/result1__1204/CO[3]
+                         net (fo=1, unplaced)         0.000    68.880    i_croc_soc/i_user/i_simple_alu/result1__1204_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    68.997 r  i_croc_soc/i_user/i_simple_alu/result1__1205/CO[3]
+                         net (fo=1, unplaced)         0.000    68.997    i_croc_soc/i_user/i_simple_alu/result1__1205_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    69.114 r  i_croc_soc/i_user/i_simple_alu/result1__1206/CO[3]
+                         net (fo=1, unplaced)         0.000    69.114    i_croc_soc/i_user/i_simple_alu/result1__1206_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    69.231 r  i_croc_soc/i_user/i_simple_alu/result1__1207/CO[3]
+                         net (fo=1, unplaced)         0.000    69.231    i_croc_soc/i_user/i_simple_alu/result1__1207_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    69.348 r  i_croc_soc/i_user/i_simple_alu/result1__1208/CO[3]
+                         net (fo=1, unplaced)         0.000    69.348    i_croc_soc/i_user/i_simple_alu/result1__1208_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    69.465 r  i_croc_soc/i_user/i_simple_alu/result1__1209/CO[3]
+                         net (fo=1, unplaced)         0.000    69.465    i_croc_soc/i_user/i_simple_alu/result1__1209_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    69.582 r  i_croc_soc/i_user/i_simple_alu/result1__1210/CO[3]
+                         net (fo=1, unplaced)         0.000    69.582    i_croc_soc/i_user/i_simple_alu/result1__1210_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    69.761 r  i_croc_soc/i_user/i_simple_alu/result1__1211/CO[1]
+                         net (fo=37, unplaced)        0.600    70.361    i_croc_soc/i_user/i_simple_alu/result1__1211_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    71.164 r  i_croc_soc/i_user/i_simple_alu/result1__1212/CO[3]
+                         net (fo=1, unplaced)         0.009    71.173    i_croc_soc/i_user/i_simple_alu/result1__1212_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    71.290 r  i_croc_soc/i_user/i_simple_alu/result1__1213/CO[3]
+                         net (fo=1, unplaced)         0.000    71.290    i_croc_soc/i_user/i_simple_alu/result1__1213_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    71.407 r  i_croc_soc/i_user/i_simple_alu/result1__1214/CO[3]
+                         net (fo=1, unplaced)         0.000    71.407    i_croc_soc/i_user/i_simple_alu/result1__1214_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    71.524 r  i_croc_soc/i_user/i_simple_alu/result1__1215/CO[3]
+                         net (fo=1, unplaced)         0.000    71.524    i_croc_soc/i_user/i_simple_alu/result1__1215_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    71.641 r  i_croc_soc/i_user/i_simple_alu/result1__1216/CO[3]
+                         net (fo=1, unplaced)         0.000    71.641    i_croc_soc/i_user/i_simple_alu/result1__1216_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    71.758 r  i_croc_soc/i_user/i_simple_alu/result1__1217/CO[3]
+                         net (fo=1, unplaced)         0.000    71.758    i_croc_soc/i_user/i_simple_alu/result1__1217_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    71.875 r  i_croc_soc/i_user/i_simple_alu/result1__1218/CO[3]
+                         net (fo=1, unplaced)         0.000    71.875    i_croc_soc/i_user/i_simple_alu/result1__1218_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    71.992 r  i_croc_soc/i_user/i_simple_alu/result1__1219/CO[3]
+                         net (fo=1, unplaced)         0.000    71.992    i_croc_soc/i_user/i_simple_alu/result1__1219_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    72.171 r  i_croc_soc/i_user/i_simple_alu/result1__1220/CO[1]
+                         net (fo=37, unplaced)        0.600    72.771    i_croc_soc/i_user/i_simple_alu/result1__1220_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    73.574 r  i_croc_soc/i_user/i_simple_alu/result1__1221/CO[3]
+                         net (fo=1, unplaced)         0.009    73.583    i_croc_soc/i_user/i_simple_alu/result1__1221_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    73.700 r  i_croc_soc/i_user/i_simple_alu/result1__1222/CO[3]
+                         net (fo=1, unplaced)         0.000    73.700    i_croc_soc/i_user/i_simple_alu/result1__1222_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    73.817 r  i_croc_soc/i_user/i_simple_alu/result1__1223/CO[3]
+                         net (fo=1, unplaced)         0.000    73.817    i_croc_soc/i_user/i_simple_alu/result1__1223_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    73.934 r  i_croc_soc/i_user/i_simple_alu/result1__1224/CO[3]
+                         net (fo=1, unplaced)         0.000    73.934    i_croc_soc/i_user/i_simple_alu/result1__1224_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    74.051 r  i_croc_soc/i_user/i_simple_alu/result1__1225/CO[3]
+                         net (fo=1, unplaced)         0.000    74.051    i_croc_soc/i_user/i_simple_alu/result1__1225_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    74.168 r  i_croc_soc/i_user/i_simple_alu/result1__1226/CO[3]
+                         net (fo=1, unplaced)         0.000    74.168    i_croc_soc/i_user/i_simple_alu/result1__1226_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    74.285 r  i_croc_soc/i_user/i_simple_alu/result1__1227/CO[3]
+                         net (fo=1, unplaced)         0.000    74.285    i_croc_soc/i_user/i_simple_alu/result1__1227_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    74.402 r  i_croc_soc/i_user/i_simple_alu/result1__1228/CO[3]
+                         net (fo=1, unplaced)         0.000    74.402    i_croc_soc/i_user/i_simple_alu/result1__1228_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    74.581 r  i_croc_soc/i_user/i_simple_alu/result1__1229/CO[1]
+                         net (fo=37, unplaced)        0.600    75.181    i_croc_soc/i_user/i_simple_alu/result1__1229_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    75.984 r  i_croc_soc/i_user/i_simple_alu/result1__1230/CO[3]
+                         net (fo=1, unplaced)         0.009    75.993    i_croc_soc/i_user/i_simple_alu/result1__1230_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    76.110 r  i_croc_soc/i_user/i_simple_alu/result1__1231/CO[3]
+                         net (fo=1, unplaced)         0.000    76.110    i_croc_soc/i_user/i_simple_alu/result1__1231_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    76.227 r  i_croc_soc/i_user/i_simple_alu/result1__1232/CO[3]
+                         net (fo=1, unplaced)         0.000    76.227    i_croc_soc/i_user/i_simple_alu/result1__1232_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    76.344 r  i_croc_soc/i_user/i_simple_alu/result1__1233/CO[3]
+                         net (fo=1, unplaced)         0.000    76.344    i_croc_soc/i_user/i_simple_alu/result1__1233_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    76.461 r  i_croc_soc/i_user/i_simple_alu/result1__1234/CO[3]
+                         net (fo=1, unplaced)         0.000    76.461    i_croc_soc/i_user/i_simple_alu/result1__1234_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    76.578 r  i_croc_soc/i_user/i_simple_alu/result1__1235/CO[3]
+                         net (fo=1, unplaced)         0.000    76.578    i_croc_soc/i_user/i_simple_alu/result1__1235_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    76.695 r  i_croc_soc/i_user/i_simple_alu/result1__1236/CO[3]
+                         net (fo=1, unplaced)         0.000    76.695    i_croc_soc/i_user/i_simple_alu/result1__1236_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    76.812 r  i_croc_soc/i_user/i_simple_alu/result1__1237/CO[3]
+                         net (fo=1, unplaced)         0.000    76.812    i_croc_soc/i_user/i_simple_alu/result1__1237_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    76.991 r  i_croc_soc/i_user/i_simple_alu/result1__1238/CO[1]
+                         net (fo=38, unplaced)        0.600    77.591    i_croc_soc/i_user/i_simple_alu/result1__1238_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    78.394 r  i_croc_soc/i_user/i_simple_alu/result1__1239/CO[3]
+                         net (fo=1, unplaced)         0.009    78.403    i_croc_soc/i_user/i_simple_alu/result1__1239_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    78.520 r  i_croc_soc/i_user/i_simple_alu/result1__1240/CO[3]
+                         net (fo=1, unplaced)         0.000    78.520    i_croc_soc/i_user/i_simple_alu/result1__1240_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    78.637 r  i_croc_soc/i_user/i_simple_alu/result1__1241/CO[3]
+                         net (fo=1, unplaced)         0.000    78.637    i_croc_soc/i_user/i_simple_alu/result1__1241_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    78.754 r  i_croc_soc/i_user/i_simple_alu/result1__1242/CO[3]
+                         net (fo=1, unplaced)         0.000    78.754    i_croc_soc/i_user/i_simple_alu/result1__1242_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    78.871 r  i_croc_soc/i_user/i_simple_alu/result1__1243/CO[3]
+                         net (fo=1, unplaced)         0.000    78.871    i_croc_soc/i_user/i_simple_alu/result1__1243_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    78.988 r  i_croc_soc/i_user/i_simple_alu/result1__1244/CO[3]
+                         net (fo=1, unplaced)         0.000    78.988    i_croc_soc/i_user/i_simple_alu/result1__1244_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    79.105 r  i_croc_soc/i_user/i_simple_alu/result1__1245/CO[3]
+                         net (fo=1, unplaced)         0.000    79.105    i_croc_soc/i_user/i_simple_alu/result1__1245_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    79.222 r  i_croc_soc/i_user/i_simple_alu/result1__1246/CO[3]
+                         net (fo=1, unplaced)         0.000    79.222    i_croc_soc/i_user/i_simple_alu/result1__1246_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    79.401 r  i_croc_soc/i_user/i_simple_alu/result1__1247/CO[1]
+                         net (fo=38, unplaced)        0.600    80.001    i_croc_soc/i_user/i_simple_alu/result1__1247_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    80.804 r  i_croc_soc/i_user/i_simple_alu/result1__1248/CO[3]
+                         net (fo=1, unplaced)         0.009    80.813    i_croc_soc/i_user/i_simple_alu/result1__1248_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    80.930 r  i_croc_soc/i_user/i_simple_alu/result1__1249/CO[3]
+                         net (fo=1, unplaced)         0.000    80.930    i_croc_soc/i_user/i_simple_alu/result1__1249_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    81.047 r  i_croc_soc/i_user/i_simple_alu/result1__1250/CO[3]
+                         net (fo=1, unplaced)         0.000    81.047    i_croc_soc/i_user/i_simple_alu/result1__1250_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    81.164 r  i_croc_soc/i_user/i_simple_alu/result1__1251/CO[3]
+                         net (fo=1, unplaced)         0.000    81.164    i_croc_soc/i_user/i_simple_alu/result1__1251_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    81.281 r  i_croc_soc/i_user/i_simple_alu/result1__1252/CO[3]
+                         net (fo=1, unplaced)         0.000    81.281    i_croc_soc/i_user/i_simple_alu/result1__1252_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    81.398 r  i_croc_soc/i_user/i_simple_alu/result1__1253/CO[3]
+                         net (fo=1, unplaced)         0.000    81.398    i_croc_soc/i_user/i_simple_alu/result1__1253_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    81.515 r  i_croc_soc/i_user/i_simple_alu/result1__1254/CO[3]
+                         net (fo=1, unplaced)         0.000    81.515    i_croc_soc/i_user/i_simple_alu/result1__1254_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    81.632 r  i_croc_soc/i_user/i_simple_alu/result1__1255/CO[3]
+                         net (fo=1, unplaced)         0.000    81.632    i_croc_soc/i_user/i_simple_alu/result1__1255_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    81.811 r  i_croc_soc/i_user/i_simple_alu/result1__1256/CO[1]
+                         net (fo=38, unplaced)        0.600    82.411    i_croc_soc/i_user/i_simple_alu/result1__1256_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    83.214 r  i_croc_soc/i_user/i_simple_alu/result1__1257/CO[3]
+                         net (fo=1, unplaced)         0.009    83.223    i_croc_soc/i_user/i_simple_alu/result1__1257_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    83.340 r  i_croc_soc/i_user/i_simple_alu/result1__1258/CO[3]
+                         net (fo=1, unplaced)         0.000    83.340    i_croc_soc/i_user/i_simple_alu/result1__1258_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    83.457 r  i_croc_soc/i_user/i_simple_alu/result1__1259/CO[3]
+                         net (fo=1, unplaced)         0.000    83.457    i_croc_soc/i_user/i_simple_alu/result1__1259_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    83.574 r  i_croc_soc/i_user/i_simple_alu/result1__1260/CO[3]
+                         net (fo=1, unplaced)         0.000    83.574    i_croc_soc/i_user/i_simple_alu/result1__1260_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    83.691 r  i_croc_soc/i_user/i_simple_alu/result1__1261/CO[3]
+                         net (fo=1, unplaced)         0.000    83.691    i_croc_soc/i_user/i_simple_alu/result1__1261_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    83.808 r  i_croc_soc/i_user/i_simple_alu/result1__1262/CO[3]
+                         net (fo=1, unplaced)         0.000    83.808    i_croc_soc/i_user/i_simple_alu/result1__1262_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    83.925 r  i_croc_soc/i_user/i_simple_alu/result1__1263/CO[3]
+                         net (fo=1, unplaced)         0.000    83.925    i_croc_soc/i_user/i_simple_alu/result1__1263_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    84.042 r  i_croc_soc/i_user/i_simple_alu/result1__1264/CO[3]
+                         net (fo=1, unplaced)         0.000    84.042    i_croc_soc/i_user/i_simple_alu/result1__1264_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    84.221 r  i_croc_soc/i_user/i_simple_alu/result1__1265/CO[1]
+                         net (fo=38, unplaced)        0.600    84.821    i_croc_soc/i_user/i_simple_alu/result1__1265_i_2[0]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    85.624 r  i_croc_soc/i_user/i_simple_alu/result1__1266/CO[3]
+                         net (fo=1, unplaced)         0.009    85.633    i_croc_soc/i_user/i_simple_alu/result1__1266_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    85.750 r  i_croc_soc/i_user/i_simple_alu/result1__1267/CO[3]
+                         net (fo=1, unplaced)         0.000    85.750    i_croc_soc/i_user/i_simple_alu/result1__1267_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    85.867 r  i_croc_soc/i_user/i_simple_alu/result1__1268/CO[3]
+                         net (fo=1, unplaced)         0.000    85.867    i_croc_soc/i_user/i_simple_alu/result1__1268_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    85.984 r  i_croc_soc/i_user/i_simple_alu/result1__1269/CO[3]
+                         net (fo=1, unplaced)         0.000    85.984    i_croc_soc/i_user/i_simple_alu/result1__1269_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    86.101 r  i_croc_soc/i_user/i_simple_alu/result1__1270/CO[3]
+                         net (fo=1, unplaced)         0.000    86.101    i_croc_soc/i_user/i_simple_alu/result1__1270_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    86.218 r  i_croc_soc/i_user/i_simple_alu/result1__1271/CO[3]
+                         net (fo=1, unplaced)         0.000    86.218    i_croc_soc/i_user/i_simple_alu/result1__1271_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    86.335 r  i_croc_soc/i_user/i_simple_alu/result1__1272/CO[3]
+                         net (fo=1, unplaced)         0.000    86.335    i_croc_soc/i_user/i_simple_alu/result1__1272_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    86.452 r  i_croc_soc/i_user/i_simple_alu/result1__1273/CO[3]
+                         net (fo=1, unplaced)         0.000    86.452    i_croc_soc/i_user/i_simple_alu/result1__1273_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    86.631 r  i_croc_soc/i_user/i_simple_alu/result1__1274/CO[1]
+                         net (fo=38, unplaced)        0.600    87.231    i_croc_soc/i_user/i_simple_alu/result1__1274_i_2[0]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    88.034 r  i_croc_soc/i_user/i_simple_alu/result1__1275/CO[3]
+                         net (fo=1, unplaced)         0.009    88.043    i_croc_soc/i_user/i_simple_alu/result1__1275_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    88.160 r  i_croc_soc/i_user/i_simple_alu/result1__1276/CO[3]
+                         net (fo=1, unplaced)         0.000    88.160    i_croc_soc/i_user/i_simple_alu/result1__1276_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    88.277 r  i_croc_soc/i_user/i_simple_alu/result1__1277/CO[3]
+                         net (fo=1, unplaced)         0.000    88.277    i_croc_soc/i_user/i_simple_alu/result1__1277_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    88.394 r  i_croc_soc/i_user/i_simple_alu/result1__1278/CO[3]
+                         net (fo=1, unplaced)         0.000    88.394    i_croc_soc/i_user/i_simple_alu/result1__1278_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    88.511 r  i_croc_soc/i_user/i_simple_alu/result1__1279/CO[3]
+                         net (fo=1, unplaced)         0.000    88.511    i_croc_soc/i_user/i_simple_alu/result1__1279_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    88.628 r  i_croc_soc/i_user/i_simple_alu/result1__1280/CO[3]
+                         net (fo=1, unplaced)         0.000    88.628    i_croc_soc/i_user/i_simple_alu/result1__1280_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    88.745 r  i_croc_soc/i_user/i_simple_alu/result1__1281/CO[3]
+                         net (fo=1, unplaced)         0.000    88.745    i_croc_soc/i_user/i_simple_alu/result1__1281_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    88.862 r  i_croc_soc/i_user/i_simple_alu/result1__1282/CO[3]
+                         net (fo=1, unplaced)         0.000    88.862    i_croc_soc/i_user/i_simple_alu/result1__1282_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    89.041 r  i_croc_soc/i_user/i_simple_alu/result1__1283/CO[1]
+                         net (fo=38, unplaced)        0.600    89.641    i_croc_soc/i_user/i_simple_alu/result1__1283_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    90.444 r  i_croc_soc/i_user/i_simple_alu/result1__1284/CO[3]
+                         net (fo=1, unplaced)         0.009    90.453    i_croc_soc/i_user/i_simple_alu/result1__1284_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    90.570 r  i_croc_soc/i_user/i_simple_alu/result1__1285/CO[3]
+                         net (fo=1, unplaced)         0.000    90.570    i_croc_soc/i_user/i_simple_alu/result1__1285_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    90.687 r  i_croc_soc/i_user/i_simple_alu/result1__1286/CO[3]
+                         net (fo=1, unplaced)         0.000    90.687    i_croc_soc/i_user/i_simple_alu/result1__1286_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    90.804 r  i_croc_soc/i_user/i_simple_alu/result1__1287/CO[3]
+                         net (fo=1, unplaced)         0.000    90.804    i_croc_soc/i_user/i_simple_alu/result1__1287_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    90.921 r  i_croc_soc/i_user/i_simple_alu/result1__1288/CO[3]
+                         net (fo=1, unplaced)         0.000    90.921    i_croc_soc/i_user/i_simple_alu/result1__1288_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    91.037 r  i_croc_soc/i_user/i_simple_alu/result1__1289/CO[3]
+                         net (fo=1, unplaced)         0.000    91.037    i_croc_soc/i_user/i_simple_alu/result1__1289_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    91.154 r  i_croc_soc/i_user/i_simple_alu/result1__1290/CO[3]
+                         net (fo=1, unplaced)         0.000    91.154    i_croc_soc/i_user/i_simple_alu/result1__1290_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    91.271 r  i_croc_soc/i_user/i_simple_alu/result1__1291/CO[3]
+                         net (fo=1, unplaced)         0.000    91.271    i_croc_soc/i_user/i_simple_alu/result1__1291_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    91.450 r  i_croc_soc/i_user/i_simple_alu/result1__1292/CO[1]
+                         net (fo=38, unplaced)        0.600    92.050    i_croc_soc/i_user/i_simple_alu/result1__1292_i_2[1]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    92.853 r  i_croc_soc/i_user/i_simple_alu/result1__1293/CO[3]
+                         net (fo=1, unplaced)         0.009    92.862    i_croc_soc/i_user/i_simple_alu/result1__1293_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    92.979 r  i_croc_soc/i_user/i_simple_alu/result1__1294/CO[3]
+                         net (fo=1, unplaced)         0.000    92.979    i_croc_soc/i_user/i_simple_alu/result1__1294_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    93.096 r  i_croc_soc/i_user/i_simple_alu/result1__1295/CO[3]
+                         net (fo=1, unplaced)         0.000    93.096    i_croc_soc/i_user/i_simple_alu/result1__1295_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    93.213 r  i_croc_soc/i_user/i_simple_alu/result1__1296/CO[3]
+                         net (fo=1, unplaced)         0.000    93.213    i_croc_soc/i_user/i_simple_alu/result1__1296_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    93.330 r  i_croc_soc/i_user/i_simple_alu/result1__1297/CO[3]
+                         net (fo=1, unplaced)         0.000    93.330    i_croc_soc/i_user/i_simple_alu/result1__1297_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    93.447 r  i_croc_soc/i_user/i_simple_alu/result1__1298/CO[3]
+                         net (fo=1, unplaced)         0.000    93.447    i_croc_soc/i_user/i_simple_alu/result1__1298_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    93.564 r  i_croc_soc/i_user/i_simple_alu/result1__1299/CO[3]
+                         net (fo=1, unplaced)         0.000    93.564    i_croc_soc/i_user/i_simple_alu/result1__1299_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    93.681 r  i_croc_soc/i_user/i_simple_alu/result1__1300/CO[3]
+                         net (fo=1, unplaced)         0.000    93.681    i_croc_soc/i_user/i_simple_alu/result1__1300_n_459
+                         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.179    93.860 r  i_croc_soc/i_user/i_simple_alu/result1__1301/CO[1]
+                         net (fo=38, unplaced)        0.600    94.460    i_croc_soc/i_user/i_simple_alu/CO[0]
+                         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.803    95.263 r  i_croc_soc/i_user/i_simple_alu/result1__1302/CO[3]
+                         net (fo=1, unplaced)         0.009    95.272    i_croc_soc/i_user/i_simple_alu/result1__1302_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    95.389 r  i_croc_soc/i_user/i_simple_alu/result1__1303/CO[3]
+                         net (fo=1, unplaced)         0.000    95.389    i_croc_soc/i_user/i_simple_alu/result1__1303_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    95.506 r  i_croc_soc/i_user/i_simple_alu/result1__1304/CO[3]
+                         net (fo=1, unplaced)         0.000    95.506    i_croc_soc/i_user/i_simple_alu/result1__1304_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    95.623 r  i_croc_soc/i_user/i_simple_alu/result1__1305/CO[3]
+                         net (fo=1, unplaced)         0.000    95.623    i_croc_soc/i_user/i_simple_alu/result1__1305_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    95.740 r  i_croc_soc/i_user/i_simple_alu/result1__1306/CO[3]
+                         net (fo=1, unplaced)         0.000    95.740    i_croc_soc/i_user/i_simple_alu/result1__1306_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    95.857 r  i_croc_soc/i_user/i_simple_alu/result1__1307/CO[3]
+                         net (fo=1, unplaced)         0.000    95.857    i_croc_soc/i_user/i_simple_alu/result1__1307_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    95.974 r  i_croc_soc/i_user/i_simple_alu/result1__1308/CO[3]
+                         net (fo=1, unplaced)         0.000    95.974    i_croc_soc/i_user/i_simple_alu/result1__1308_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    96.091 r  i_croc_soc/i_user/i_simple_alu/result1__1309/CO[3]
+                         net (fo=1, unplaced)         0.000    96.091    i_croc_soc/i_user/i_simple_alu/result1__1309_n_459
+                         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.281    96.372 r  i_croc_soc/i_user/i_simple_alu/result1__1310/CO[0]
+                         net (fo=2, unplaced)         0.677    97.049    i_croc_soc/i_user/i_simple_alu/in[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.880    97.929 r  i_croc_soc/i_user/i_simple_alu/result0_carry/CO[3]
+                         net (fo=1, unplaced)         0.009    97.938    i_croc_soc/i_user/i_simple_alu/result0_carry_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    98.055 r  i_croc_soc/i_user/i_simple_alu/result0_carry__0/CO[3]
+                         net (fo=1, unplaced)         0.000    98.055    i_croc_soc/i_user/i_simple_alu/result0_carry__0_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    98.172 r  i_croc_soc/i_user/i_simple_alu/result0_carry__1/CO[3]
+                         net (fo=1, unplaced)         0.000    98.172    i_croc_soc/i_user/i_simple_alu/result0_carry__1_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    98.289 r  i_croc_soc/i_user/i_simple_alu/result0_carry__2/CO[3]
+                         net (fo=1, unplaced)         0.000    98.289    i_croc_soc/i_user/i_simple_alu/result0_carry__2_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    98.406 r  i_croc_soc/i_user/i_simple_alu/result0_carry__3/CO[3]
+                         net (fo=1, unplaced)         0.000    98.406    i_croc_soc/i_user/i_simple_alu/result0_carry__3_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    98.523 r  i_croc_soc/i_user/i_simple_alu/result0_carry__4/CO[3]
+                         net (fo=1, unplaced)         0.000    98.523    i_croc_soc/i_user/i_simple_alu/result0_carry__4_n_459
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    98.640 r  i_croc_soc/i_user/i_simple_alu/result0_carry__5/CO[3]
+                         net (fo=1, unplaced)         0.000    98.640    i_croc_soc/i_user/i_simple_alu/result0_carry__5_n_459
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331    98.971 r  i_croc_soc/i_user/i_simple_alu/result0_carry__6/O[3]
+                         net (fo=1, unplaced)         0.618    99.589    i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/result1[17]
+                         LUT6 (Prop_lut6_I1_O)        0.307    99.896 r  i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/result_q[31]_i_9/O
+                         net (fo=1, unplaced)         0.449   100.345    i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/result_q[31]_i_9_n_459
+                         LUT6 (Prop_lut6_I5_O)        0.124   100.469 r  i_croc_soc/i_croc/i_main_xbar/gen_mux[4].i_mux/i_rr_arb/result_q[31]_i_2/O
+                         net (fo=1, unplaced)         0.000   100.469    i_croc_soc/i_user/i_simple_alu/result_q_reg[31]_0[31]
+                         FDCE                                         r  i_croc_soc/i_user/i_simple_alu/result_q_reg[31]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_20_clkwiz rise edge)
-                                                     50.000    50.000 r  
-    H16                                               0.000    50.000 r  sys_clk_i (IN)
-                         net (fo=0)                   0.000    50.000    sys_clk_i
-    H16                  IBUF (Prop_ibuf_I_O)         1.380    51.380 r  sys_clk_i_IBUF_inst/O
-                         net (fo=1, unplaced)         0.439    51.819    i_clkwiz/inst/clk_in1
+                                                     40.000    40.000 r  
+    H16                                               0.000    40.000 r  sys_clk_i (IN)
+                         net (fo=0)                   0.000    40.000    sys_clk_i
+    H16                  IBUF (Prop_ibuf_I_O)         1.380    41.380 r  sys_clk_i_IBUF_inst/O
+                         net (fo=1, unplaced)         0.439    41.819    i_clkwiz/inst/clk_in1
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
-                                                     -5.378    46.442 r  i_clkwiz/inst/mmcm_adv_inst/CLKOUT0
-                         net (fo=1, unplaced)         0.760    47.201    i_clkwiz/inst/clk_20_clkwiz
-                         BUFG (Prop_bufg_I_O)         0.091    47.292 r  i_clkwiz/inst/clkout1_buf/O
-                         net (fo=3749, unplaced)      0.439    47.731    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/clk_20
-                         FDCE                                         r  i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[28]/C
-                         clock pessimism              0.530    48.262    
-                         clock uncertainty           -0.100    48.162    
-                         FDCE (Setup_fdce_C_D)        0.044    48.206    i_croc_soc/i_croc/i_core_wrap/i_ibex/if_stage_i/prefetch_buffer_i/fifo_i/instr_addr_q_reg[28]
+                                                     -5.378    36.442 r  i_clkwiz/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, unplaced)         0.760    37.201    i_clkwiz/inst/clk_20_clkwiz
+                         BUFG (Prop_bufg_I_O)         0.091    37.292 r  i_clkwiz/inst/clkout1_buf/O
+                         net (fo=3795, unplaced)      0.439    37.731    i_croc_soc/i_user/i_simple_alu/clk_20
+                         FDCE                                         r  i_croc_soc/i_user/i_simple_alu/result_q_reg[31]/C
+                         clock pessimism              0.530    38.262    
+                         clock uncertainty           -0.094    38.167    
+                         FDCE (Setup_fdce_C_D)        0.044    38.211    i_croc_soc/i_user/i_simple_alu/result_q_reg[31]
   -------------------------------------------------------------------
-                         required time                         48.206    
-                         arrival time                         -25.685    
+                         required time                         38.211    
+                         arrival time                        -100.469    
   -------------------------------------------------------------------
-                         slack                                 22.521    
+                         slack                                -62.258    
 
-Slack (MET) :             45.872ns  (required time - arrival time)
+Slack (MET) :             35.878ns  (required time - arrival time)
   Source:                 i_rstgen/i_rstgen_bypass/synch_regs_q_reg[3]/C
-                            (rising edge-triggered cell FDCE clocked by clk_20_clkwiz  {rise@0.000ns fall@25.000ns period=50.000ns})
+                            (rising edge-triggered cell FDCE clocked by clk_20_clkwiz  {rise@0.000ns fall@20.000ns period=40.000ns})
   Destination:            i_croc_soc/i_rstgen/i_rstgen_bypass/synch_regs_q_reg[0]/CLR
-                            (recovery check against rising-edge clock clk_20_clkwiz  {rise@0.000ns fall@25.000ns period=50.000ns})
+                            (recovery check against rising-edge clock clk_20_clkwiz  {rise@0.000ns fall@20.000ns period=40.000ns})
   Path Group:             **async_default**
   Path Type:              Recovery (Max at Slow Process Corner)
-  Requirement:            50.000ns  (clk_20_clkwiz rise@50.000ns - clk_20_clkwiz rise@0.000ns)
+  Requirement:            40.000ns  (clk_20_clkwiz rise@40.000ns - clk_20_clkwiz rise@0.000ns)
   Data Path Delay:        3.531ns  (logic 0.979ns (27.726%)  route 2.552ns (72.274%))
   Logic Levels:           3  (BUFGCTRL=2 LUT1=1)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    -2.269ns = ( 47.731 - 50.000 ) 
+    Destination Clock Delay (DCD):    -2.269ns = ( 37.731 - 40.000 ) 
     Source Clock Delay      (SCD):    -1.593ns
     Clock Pessimism Removal (CPR):    0.530ns
-  Clock Uncertainty:      0.100ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+  Clock Uncertainty:      0.094ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
-    Discrete Jitter          (DJ):    0.187ns
+    Discrete Jitter          (DJ):    0.175ns
     Phase Error              (PE):    0.000ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -223,7 +1083,7 @@ Slack (MET) :             45.872ns  (required time - arrival time)
                                                      -5.113    -3.078 r  i_clkwiz/inst/mmcm_adv_inst/CLKOUT0
                          net (fo=1, unplaced)         0.800    -2.278    i_clkwiz/inst/clk_20_clkwiz
                          BUFG (Prop_bufg_I_O)         0.101    -2.177 r  i_clkwiz/inst/clkout1_buf/O
-                         net (fo=3749, unplaced)      0.584    -1.593    i_rstgen/i_rstgen_bypass/CLK
+                         net (fo=3795, unplaced)      0.584    -1.593    i_rstgen/i_rstgen_bypass/CLK
                          FDCE                                         r  i_rstgen/i_rstgen_bypass/synch_regs_q_reg[3]/C
   -------------------------------------------------------------------    -------------------
                          FDCE (Prop_fdce_C_Q)         0.478    -1.115 r  i_rstgen/i_rstgen_bypass/synch_regs_q_reg[3]/Q
@@ -240,25 +1100,25 @@ Slack (MET) :             45.872ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_20_clkwiz rise edge)
-                                                     50.000    50.000 r  
-    H16                                               0.000    50.000 r  sys_clk_i (IN)
-                         net (fo=0)                   0.000    50.000    sys_clk_i
-    H16                  IBUF (Prop_ibuf_I_O)         1.380    51.380 r  sys_clk_i_IBUF_inst/O
-                         net (fo=1, unplaced)         0.439    51.819    i_clkwiz/inst/clk_in1
+                                                     40.000    40.000 r  
+    H16                                               0.000    40.000 r  sys_clk_i (IN)
+                         net (fo=0)                   0.000    40.000    sys_clk_i
+    H16                  IBUF (Prop_ibuf_I_O)         1.380    41.380 r  sys_clk_i_IBUF_inst/O
+                         net (fo=1, unplaced)         0.439    41.819    i_clkwiz/inst/clk_in1
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
-                                                     -5.378    46.442 r  i_clkwiz/inst/mmcm_adv_inst/CLKOUT0
-                         net (fo=1, unplaced)         0.760    47.201    i_clkwiz/inst/clk_20_clkwiz
-                         BUFG (Prop_bufg_I_O)         0.091    47.292 r  i_clkwiz/inst/clkout1_buf/O
-                         net (fo=3749, unplaced)      0.439    47.731    i_croc_soc/i_rstgen/i_rstgen_bypass/clk_20
+                                                     -5.378    36.442 r  i_clkwiz/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, unplaced)         0.760    37.201    i_clkwiz/inst/clk_20_clkwiz
+                         BUFG (Prop_bufg_I_O)         0.091    37.292 r  i_clkwiz/inst/clkout1_buf/O
+                         net (fo=3795, unplaced)      0.439    37.731    i_croc_soc/i_rstgen/i_rstgen_bypass/clk_20
                          FDCE                                         r  i_croc_soc/i_rstgen/i_rstgen_bypass/synch_regs_q_reg[0]/C
-                         clock pessimism              0.530    48.262    
-                         clock uncertainty           -0.100    48.162    
-                         FDCE (Recov_fdce_C_CLR)     -0.352    47.810    i_croc_soc/i_rstgen/i_rstgen_bypass/synch_regs_q_reg[0]
+                         clock pessimism              0.530    38.262    
+                         clock uncertainty           -0.094    38.167    
+                         FDCE (Recov_fdce_C_CLR)     -0.352    37.815    i_croc_soc/i_rstgen/i_rstgen_bypass/synch_regs_q_reg[0]
   -------------------------------------------------------------------
-                         required time                         47.810    
+                         required time                         37.815    
                          arrival time                          -1.938    
   -------------------------------------------------------------------
-                         slack                                 45.872    
+                         slack                                 35.878    
 
 
 
