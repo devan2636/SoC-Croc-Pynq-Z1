@@ -6,27 +6,22 @@
 
 int main() {
     uart_init(); // setup the uart peripheral
-    printf("\rTest LED Blink 123456789\n\r");
+    printf("\rTest LED Blink LD3 LD2 LD1 LD0\n\r");
     uart_write_flush(); // wait until uart has finished sending
 
-    // Set GPIO[0] as output
-    gpio_set_direction(0xFFFF, 0x0001);
-    gpio_enable(0x0001);
+    // Set LD3..LD0 as outputs.
+    gpio_set_direction(0x000F, 0x000F);
+    gpio_enable(0x000F);
 
-    int idx = 0;
-    uint16_t delay = 200;
+    const uint32_t leds[] = {0x8, 0x4, 0x2, 0x1};
+    const uint32_t delay_ms = 200;
 
-    while (idx < 100) {
-        gpio_write(0x1);   // LED ON
-        sleep_ms(delay);
-
-        gpio_write(0x0);   // LED OFF
-        sleep_ms(delay);
-
-        idx++;
+    while (1) {
+        for (uint32_t i = 0; i < 4; ++i) {
+            gpio_write(leds[i]);
+            sleep_ms(delay_ms);
+        }
     }
-    printf("LED Blink Test Finish\n\r");
-    uart_write_flush(); // wait until uart has finished sending
 
-    return 1;
+    return 0;
 }

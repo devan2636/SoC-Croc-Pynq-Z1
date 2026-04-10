@@ -48,6 +48,9 @@ module simple_alu #(
   logic [ObiCfg.AddrWidth-1:0] addr_d, addr_q;
   logic [ObiCfg.IdWidth-1:0] id_d, id_q;
   logic [ObiCfg.DataWidth-1:0] wdata;
+  logic [15:0] user_reg16_d, user_reg16_q;
+  logic [15:0] add2_in_d, add2_in_q;
+  logic [15:0] add2_out_d, add2_out_q;
   // Signals to handle 2 data inputs from wdata
   logic signed [ObiCfg.DataWidth/2-1:0] wdata1,wdata2;
 
@@ -63,6 +66,9 @@ module simple_alu #(
   `FF(result_q , result_d , '0);
   `FF(addr_q , addr_d , '0);
   `FF(data_q, data_d, '0);
+  `FF(user_reg16_q, user_reg16_d, '0);
+  `FF(add2_in_q, add2_in_d, '0);
+  `FF(add2_out_q, add2_out_d, '0);
   
   assign req_d = obi_req_i.req;
   assign id_d = obi_req_i.a.aid;
@@ -77,7 +83,10 @@ module simple_alu #(
     Multiply    = 8,
     Divide      = 12,
     ReadResult  = 16,
-    Invalid     = 24
+    UserReg16   = 20,
+    Add2Input   = 24,
+    Add2Output  = 28,
+    Invalid     = 32
   } mode_t;
 
   mode_t mode;
@@ -92,6 +101,9 @@ module simple_alu #(
     rsp_err = '0;
     result_d = result_q;
     data_d = data_q;
+    user_reg16_d = user_reg16_q;
+    add2_in_d = add2_in_q;
+    add2_out_d = add2_out_q;
 
     // Fixed point 16-bit in Q8.8 Format
     wdata1 = wdata[31:16];
@@ -108,12 +120,24 @@ module simple_alu #(
 
           Divide: result_d = div(wdata1,wdata2);
 
+          UserReg16: user_reg16_d = wdata[15:0];
+
+          Add2Input: begin
+            add2_in_d  = wdata[15:0];
+            add2_out_d = wdata[15:0] + 16'd2;
+          end
+
           default: rsp_err = '1;
           
         endcase
       end else begin    
         case(mode) 
           ReadResult: data_d = result_q;
+
+          UserReg16: data_d = {16'h0000, user_reg16_q};
+
+          Add2Input:  data_d = {16'h0000, add2_in_q};
+          Add2Output: data_d = {16'h0000, add2_out_q};
 
           default: rsp_err = '1;
         endcase
@@ -166,8 +190,6 @@ module simple_alu #(
       numerator = in1 <<< 8;
       result = numerator / in2;
     end
-
-    result = in1 * in2;
     return result;
     
   endfunction

@@ -15,6 +15,35 @@ int32_t mult_sw(int16_t num1, int16_t num2);
 
 int32_t div_sw(int16_t num1, int16_t num2);
 
+#define USER_REG16_OFFSET 20
+#define ADD2_INPUT_OFFSET 24
+#define ADD2_OUTPUT_OFFSET 28
+
+static inline __attribute__((always_inline))
+void user_reg16_write(uint16_t value) {
+    *reg32(USER_ALU_BASE_ADDR, USER_REG16_OFFSET) = (uint32_t)value;
+}
+
+static inline __attribute__((always_inline))
+uint16_t user_reg16_read(void) {
+    return (uint16_t)(*reg32(USER_ALU_BASE_ADDR, USER_REG16_OFFSET) & 0xFFFFu);
+}
+
+static inline __attribute__((always_inline))
+void add2_input_write(uint16_t value) {
+    *reg32(USER_ALU_BASE_ADDR, ADD2_INPUT_OFFSET) = (uint32_t)value;
+}
+
+static inline __attribute__((always_inline))
+uint16_t add2_input_read(void) {
+    return (uint16_t)(*reg32(USER_ALU_BASE_ADDR, ADD2_INPUT_OFFSET) & 0xFFFFu);
+}
+
+static inline __attribute__((always_inline))
+uint16_t add2_output_read(void) {
+    return (uint16_t)(*reg32(USER_ALU_BASE_ADDR, ADD2_OUTPUT_OFFSET) & 0xFFFFu);
+}
+
 /**
  * @brief Addition of 16 bit integer fixed point
  *

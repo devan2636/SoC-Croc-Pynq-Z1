@@ -16,7 +16,7 @@
 #define USER_ALU_BASE_ADDR 0x20001000
 
 // Frequencies
-#define TB_FREQUENCY 20000000
+#define TB_FREQUENCY 95000000
 #define TB_BAUDRATE    115200
 
 // Peripheral configs

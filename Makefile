@@ -11,9 +11,9 @@ PYTHON3   ?= python3
 # Change the VERILATOR path to your verilator installation path.
 # If you use ubuntu and install it with package manager apt,
 # most likely it would be in the following path
-# VERILATOR ?= /usr/bin/verilator
+VERILATOR ?= /usr/bin/verilator
 # or here
-VERILATOR ?= /usr/local/bin/verilator
+# VERILATOR ?= /usr/local/bin/verilator
 YOSYS     ?= yosys
 OPENROAD  ?= openroad
 KLAYOUT   ?= klayout

@@ -10,5 +10,5 @@
 
 extern void putchar(char);
 
-// simple printf with support for %x formatter but no others
-void printf(char *fmt, ...);
+// Lightweight printf: supports %% %x %u %d %c %s and optional zero-padding width (e.g. %04x).
+void printf(const char *fmt, ...);

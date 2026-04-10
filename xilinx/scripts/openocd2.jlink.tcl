@@ -1,7 +1,7 @@
 # Copyright 2024 ETH Zurich and University of Bologna.
 # OpenOCD script for Cheshire on PYNQ-Z1 (V0.12.0 Compatible)
 
-adapter speed 100
+adapter speed 50
 adapter driver jlink
 set irlen 5
 
@@ -23,7 +23,7 @@ gdb_report_register_access_error enable
 
 riscv set_reset_timeout_sec 120
 riscv set_command_timeout_sec 120
-riscv set_mem_access abstract sysbus progbuf
+riscv set_mem_access sysbus progbuf abstract
 
 # Event untuk halt saat GDB konek
 $_TARGETNAME configure -event gdb-attach {

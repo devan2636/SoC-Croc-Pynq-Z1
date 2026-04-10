@@ -26,7 +26,8 @@ gdb_report_register_access_error enable
 riscv set_reset_timeout_sec 120
 riscv set_command_timeout_sec 120
 
-riscv set_mem_access abstract sysbus progbuf
+# Prefer SBA/progbuf first; abstract access is often unreliable on this target.
+riscv set_mem_access sysbus progbuf abstract
 
 # Try enabling address translation (only works for newer versions)
 if { [catch { riscv set_enable_virtual on } ] } {

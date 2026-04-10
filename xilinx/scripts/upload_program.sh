@@ -25,6 +25,8 @@ fi
     --ex "target remote localhost:$OCD_GDB_PORT" \
     --ex "monitor halt" \
     --ex "load" \
+    --ex "set {unsigned int}0x03000000 = 0x10000000" \
+    --ex "set {unsigned int}0x03000004 = 1" \
     --ex "set $pc = _start" \
     --ex "continue" \
     "$TARGET"
