@@ -1,8 +1,9 @@
 set confirm off
 set pagination off
+set remotetimeout 120
 
 target extended-remote localhost:3335
-monitor reset halt
+monitor halt
 load
 
 # Ensure boot address points to SRAM program area.

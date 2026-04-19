@@ -27,6 +27,6 @@ fi
     --ex "load" \
     --ex "set {unsigned int}0x03000000 = 0x10000000" \
     --ex "set {unsigned int}0x03000004 = 1" \
-    --ex "set $pc = _start" \
+    --ex "set \$pc = _start" \
     --ex "continue" \
     "$TARGET"

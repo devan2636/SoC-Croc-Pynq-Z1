@@ -2,7 +2,7 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
--- Date        : Thu Apr  9 19:39:38 2026
+-- Date        : Sat Apr 18 09:01:40 2026
 -- Host        : devan-astroboy running 64-bit Ubuntu 24.04.4 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/devan/SoC/croc_pynq-z1/xilinx/build/pynqz1.clkwiz/clkwiz.gen/sources_1/ip/clkwiz/clkwiz_stub.vhdl

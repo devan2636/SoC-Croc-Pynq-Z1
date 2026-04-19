@@ -54,12 +54,19 @@ module user_domain import user_pkg::*; import croc_pkg::*; #(
   sbr_obi_req_t user_alu_obi_req;
   sbr_obi_rsp_t user_alu_obi_rsp;
 
+  // Declare signals to connect FIR filter
+  sbr_obi_req_t user_fir_obi_req;
+  sbr_obi_rsp_t user_fir_obi_rsp;
+
   // Fanout into more readable signals
   assign user_error_obi_req              = all_user_sbr_obi_req[UserError];
   assign all_user_sbr_obi_rsp[UserError] = user_error_obi_rsp;
 
 	assign user_alu_obi_req = all_user_sbr_obi_req[UserAlu];
   assign all_user_sbr_obi_rsp[UserAlu] = user_alu_obi_rsp;
+
+  assign user_fir_obi_req = all_user_sbr_obi_req[UserFir];
+  assign all_user_sbr_obi_rsp[UserFir] = user_fir_obi_rsp;
 
 
   //-----------------------------------------------------------------------------------------------
@@ -132,6 +139,18 @@ module user_domain import user_pkg::*; import croc_pkg::*; #(
     .rst_ni,
     .obi_req_i  ( user_alu_obi_req ),
     .obi_rsp_o  ( user_alu_obi_rsp )
+  );
+
+	// FIR Filter
+  fir_filter #(
+    .ObiCfg      ( SbrObiCfg     ),
+    .obi_req_t   ( sbr_obi_req_t ),
+    .obi_rsp_t   ( sbr_obi_rsp_t )
+	) i_fir_filter (
+    .clk_i,
+    .rst_ni,
+    .obi_req_i  ( user_fir_obi_req ),
+    .obi_rsp_o  ( user_fir_obi_rsp )
   );
 
 endmodule

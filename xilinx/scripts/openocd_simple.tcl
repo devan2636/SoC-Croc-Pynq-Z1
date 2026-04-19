@@ -1,0 +1,34 @@
+# Simplified OpenOCD for debugging GDB attach issue
+adapter speed 50
+adapter driver jlink
+set irlen 5
+
+transport select jtag
+reset_config none
+gdb_port 3335
+telnet_port 4446
+tcl_port 6667
+
+set _CHIPNAME riscv
+jtag newtap $_CHIPNAME cpu -irlen ${irlen} -expected-id 0x0c0c5db3
+
+set _TARGETNAME $_CHIPNAME.cpu
+# No -defer-examine: examine immediately
+target create $_TARGETNAME riscv -chain-position $_TARGETNAME -coreid 0
+
+gdb_report_data_abort enable
+gdb_report_register_access_error enable
+
+riscv set_reset_timeout_sec 120
+riscv set_command_timeout_sec 120
+riscv set_mem_access sysbus progbuf abstract
+
+# No gdb-attach event - let GDB handle it
+init
+
+echo "Waiting for target examination..."
+sleep 2000
+
+echo "-------------------------------------------"
+echo "Ready for Remote Connections on Port 3335"
+echo "-------------------------------------------"
